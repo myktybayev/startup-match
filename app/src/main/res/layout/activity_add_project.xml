@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6FBFF">
+
+    <LinearLayout
+        android:id="@+id/layoutTopHeader"
+        android:layout_width="0dp"
+        android:layout_height="78dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/buttonBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_add_project_back"
+            android:padding="8dp"
+            android:src="@drawable/add_project_icon_back" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/add_project_title"
+                android:textColor="#0F1724"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_light"
+                android:text="@string/add_project_subtitle"
+                android:textColor="#9AA4B2"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSteps"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTopHeader">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bg_add_project_step_active"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/add_project_step_main"
+                android:textColor="#4B7BFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="112dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#F1F5F9" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bg_add_project_step_inactive"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="#9AA4B2"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/add_project_step_team"
+                android:textColor="#9AA4B2"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="24dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/layoutBottomButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutSteps">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/AddProjectLabel"
+                android:text="@string/add_project_project_name" />
+
+            <EditText
+                android:id="@+id/editProjectName"
+                style="@style/AddProjectInputSingle"
+                android:hint="@string/add_project_project_name_hint"
+                android:inputType="textCapSentences" />
+
+            <TextView
+                style="@style/AddProjectLabel"
+                android:text="@string/add_project_industry" />
+
+            <FrameLayout
+                android:id="@+id/industryDropdownContainer"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_add_project_input"
+                android:paddingStart="17dp"
+                android:paddingEnd="17dp">
+
+                <Spinner
+                    android:id="@+id/spinnerIndustry"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown"
+                    android:paddingEnd="20dp" />
+            </FrameLayout>
+
+            <TextView
+                style="@style/AddProjectLabel"
+                android:text="@string/add_project_target" />
+
+            <EditText
+                android:id="@+id/editTargetAudience"
+                style="@style/AddProjectInputMulti"
+                android:hint="@string/add_project_target_hint"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                style="@style/AddProjectLabel"
+                android:text="@string/add_project_market" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/bg_add_project_market"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonMarketLocal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/add_project_market_local"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    app:cornerRadius="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonMarketGlobal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/add_project_market_global"
+                    android:textAllCaps="false"
+                    android:textSize="14sp"
+                    app:cornerRadius="4dp" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/AddProjectLabel"
+                android:text="@string/add_project_short_desc" />
+
+            <EditText
+                android:id="@+id/editShortDescription"
+                style="@style/AddProjectInputMulti"
+                android:hint="@string/add_project_short_desc_hint"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                style="@style/AddProjectLabel"
+                android:text="@string/add_project_full_desc" />
+
+            <EditText
+                android:id="@+id/editFullDescription"
+                style="@style/AddProjectInputBigMulti"
+                android:hint="@string/add_project_full_desc_hint"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutBottomButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="17dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonNextStep"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="#4B7BFF"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/add_project_next_team"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/add_project_icon_arrow_right"
+            app:iconGravity="textEnd"
+            app:iconPadding="8dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

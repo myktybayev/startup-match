@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBFD1FF</color>
+    <color name="purple_500">#FF4B7CFF</color>
+    <color name="purple_700">#FF375FCC</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="page_background">#F6FBFF</color>
+    <color name="onboarding_background">#FFF5F6F8</color>
+    <color name="onboarding_primary">#FF4B7CFF</color>
+    <color name="onboarding_text_primary">#FF0B1220</color>
+    <color name="onboarding_subtitle">#FF8B98A8</color>
+    <color name="onboarding_bullet_dark">#FF1F2937</color>
+    <color name="onboarding_dot_inactive">#22000000</color>
+    <color name="role_card_stroke_default">#33000000</color>
+    <color name="role_page_bg">#FFF7FBFF</color>
+    <color name="role_top_blue">#FF4B7CFF</color>
+    <color name="kvadrat_blue">#4B7BFF</color>
+    <color name="role_card_unselected_bg">#FFEAF2FF</color>
+    <color name="transparent_gray">#00FFFFFF</color>
+</resources>

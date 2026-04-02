@@ -1,0 +1,32 @@
+---
+description: Figma design → Android assets (icons/images) rules
+globs: app/src/main/res/layout/**/*.xml,app/src/main/res/drawable/**/*,app/src/main/java/**/*.{java,kt}
+alwaysApply: false
+---
+
+# Figma → Android assets (drawable) rules
+
+## When implementing screens from Figma
+
+- If the Figma design references an **icon/image that does not exist** in the project resources, **do not replace it with a random placeholder**.
+- Instead, **download/export the asset from Figma** and add it to the project:
+  - Put raster images into `app/src/main/res/drawable/` (or `drawable-*` if density-specific).
+  - Prefer **VectorDrawable** (`.xml`) for simple icons when possible; otherwise add PNG/WebP.
+  - Keep naming consistent: `ic_<feature>_<name>.xml` (icons) or `<feature>_<name>.png`.
+
+## Export settings (recommended)
+
+- **Icons**: export as **SVG** from Figma → convert to Android VectorDrawable XML.
+- **Illustrations/photos**: export as **PNG** or **WebP**.
+- Use **1x** export if you’ll convert to vector; use multiple densities only when needed.
+
+## Wiring
+
+- Update layouts to reference the newly added drawable via `android:src="@drawable/<name>"`.
+- Avoid hardcoding remote URLs in UI for static assets.
+
+## Safety / consistency
+
+- Ensure any new drawable names are unique and referenced correctly (no missing resources).
+- If an asset is reused across screens, keep a single canonical drawable resource.
+

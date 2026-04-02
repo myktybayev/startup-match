@@ -1,0 +1,34 @@
+---
+description: Inter typography — titles, body, buttons/links (Android res/font)
+alwaysApply: true
+---
+
+# Inter typography (StartupMatch)
+
+Use the project’s downloadable Inter font families from `app/src/main/res/font/`. Do **not** rely on `textStyle="bold"` alone for brand typography — set `fontFamily` to the correct Inter weight.
+
+## Mapping
+
+| Role | Font resource | When to use |
+|------|----------------|-------------|
+| **Title (bold)** | `@font/inter_bold` | Screen/section titles, primary headings, hero titles |
+| **Title description / subtitle** | `@font/inter_light` | Secondary lines under a title, taglines, intro blurbs |
+| **Standard body** | `@font/inter_medium` | Paragraphs, labels (if not title), list body, hints when neutral |
+| **Button or link** | `@font/inter_semibold` | `MaterialButton`, text links (`TextView` acting as link), emphasized inline actions |
+
+## Android XML
+
+- Prefer: `android:fontFamily="@font/<name>"` on `TextView` / `Button`.
+- Material: `app:fontFamily="@font/<name>"` when the view supports it.
+- Keep `textSize`/`lineSpacing` from design; this rule only fixes **family/weight**.
+
+## Examples (conceptual)
+
+- Main screen title → `inter_bold`
+- Line under the title (“Welcome” subtitle) → `inter_light`
+- Form field label or long description → `inter_medium` (unless it is a link → `inter_semibold`)
+- “Continue”, “Login”, “Sign up” → `inter_semibold`
+
+## Consistency
+
+When adding or editing layouts (`*.xml`) or styles, apply this mapping so onboarding, auth, and future screens stay visually consistent.

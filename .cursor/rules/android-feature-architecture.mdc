@@ -1,0 +1,63 @@
+---
+description: Android feature architecture standards for Repository, Module, and integrations
+globs: app/src/main/java/**/*.{java,kt},app/src/main/res/layout/**/*.xml,app/src/main/res/values*/**/*.xml
+alwaysApply: false
+---
+
+# Android Feature Architecture Standards
+
+## 1) Repository = data source boundary
+
+- Әр feature-де жеке `Repository` болсын (`<Feature>Repository`).
+- Data оқу/сақтау тек Repository ішінде жасалады (UI, Adapter, Activity/Fragment ішінде емес).
+- Repository сыртқа тек дайын model/module объектілерін қайтарады.
+- Repository singleton немесе DI арқылы бір нүктеден алынсын.
+
+## 2) Module (model) кластар міндетті
+
+- List элементтері тікелей `Map`, `Bundle`, `JSONObject`-пен емес, module class-пен жүрсін.
+- Экрандар арасындағы переход кезінде `id` немесе module-дан шығатын тұрақты key/value ғана тасымалдансын.
+- Detail screen толық объектіні Repository арқылы `id` бойынша қайта алсын.
+- Module кластары UI логикадан тәуелсіз болсын.
+
+## 3) API және Firebase бөлек қабат
+
+- Remote интеграциялар үшін бөлек класс/қабат жасаңыз:
+  - `api/` ішінде API service/client
+  - `firebase/` ішінде Firebase service/repository
+- Activity/Fragment API/Firebase SDK-мен тікелей жұмыс істемесін.
+- Repository осы remote/local қабаттармен сөйлесіп, UI-ға unified data берсін.
+- Әр интеграцияға error mapping және fallback стратегиясы болсын.
+
+## 4) UI қабаттың жауапкершілігі
+
+- `Activity/Fragment` тек UI rendering, user interaction, navigation жасайды.
+- Business logic (фильтр, availability check, pricing rules) Repository немесе UseCase класына шығарылсын.
+- Adapter тек binding жасайды; data mutation жасамайды.
+
+## 5) Navigation және contract
+
+- Экрандарға өтуде `EXTRA_*` тұрақты кілттер қолданыңыз.
+- Intent extras үшін дефолт мән беріңіз, null-safety сақтаңыз.
+- Әр screen үшін ашылу contract-ы (required/optional extras) анық болсын.
+
+## 6) Resources
+
+- UI-дағы барлық мәтін `strings.xml` арқылы берілсін.
+- Кодтағы hardcoded string/number formatting орнына `getString(...)` және format ресурстар қолданыңыз.
+
+## 7) Naming және package structure
+
+- Feature ішіндегі базалық құрылым:
+  - `feature/<name>/module`
+  - `feature/<name>/adapters`
+  - `feature/<name>/activities` (қажет болса)
+  - `feature/<name>/<Feature>Fragment`
+  - `feature/<name>/data` (`repository`, `api`, `firebase`, `local` ішкі пакеттерімен)
+- Class атауы жауапкершілікке сай болсын (`HotelListAdapter`, `HotelsRepository` сияқты).
+
+## 8) Stability rules
+
+- Repository public method-тары side effect және thread behavior бойынша түсінікті болсын.
+- ID-лар unique болсын; duplicate id-ға жол бермеңіз.
+- Қате жағдайда UI бұзылмай, бос күй/placeholder/error state көрсетілсін.
