@@ -20,4 +20,6 @@
     <color name="kvadrat_blue">#4B7BFF</color>
     <color name="role_card_unselected_bg">#FFEAF2FF</color>
     <color name="transparent_gray">#00FFFFFF</color>
+    <color name="home_step_title_pending">#9AA4B2</color>
+    <color name="home_step_title_done">#0F1724</color>
 </resources>

@@ -35,6 +35,18 @@
             android:exported="false"
             android:label="@string/add_pitch_step_title" />
         <activity
+            android:name=".ui.home.activity.AddProjectGithubActivity"
+            android:exported="false"
+            android:label="@string/home_step_github" />
+        <activity
+            android:name=".ui.home.activity.AddMvpActivity"
+            android:exported="false"
+            android:label="@string/home_step_mvp" />
+        <activity
+            android:name=".ui.home.activity.AddTractionActivity"
+            android:exported="false"
+            android:label="@string/home_step_traction" />
+        <activity
             android:name=".ui.home.activity.CommandListActivity"
             android:exported="false"
             android:label="@string/command_list_title" />

@@ -19,7 +19,7 @@ import kz.diplomka.startupmatch.data.local.entity.TeamMemberEntity;
 )
 public abstract class AppDatabase extends RoomDatabase {
 
-    public static final int VERSION = 2;
+    public static final int VERSION = 4;
     private static final String DB_NAME = "startupmatch.db";
 
     private static volatile AppDatabase instance;

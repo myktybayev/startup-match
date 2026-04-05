@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardGithubStep"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:alpha="0.7"
@@ -15,18 +16,22 @@
         android:padding="16dp">
 
         <FrameLayout
+            android:id="@+id/frameGithubIcon"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/bg_home_step_icon">
 
             <ImageView
+                android:id="@+id/imageGithubLogo"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
+                android:contentDescription="@null"
                 android:src="@drawable/home_icon_github" />
         </FrameLayout>
 
         <TextView
+            android:id="@+id/textGithubTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -37,8 +42,10 @@
             android:textSize="15sp" />
 
         <ImageView
+            android:id="@+id/imageGithubStatus"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:contentDescription="@string/home_step_github_pending_a11y"
             android:src="@drawable/home_icon_circle_dashed" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

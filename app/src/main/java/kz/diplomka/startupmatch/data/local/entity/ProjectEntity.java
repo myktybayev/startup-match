@@ -52,6 +52,16 @@ public class ProjectEntity {
     @ColumnInfo(name = "traction_link")
     private String tractionLink;
 
+    /** Pitch сілтемесі соңғы сақталған уақыт (epoch millis). */
+    @Nullable
+    @ColumnInfo(name = "pitch_saved_at")
+    private Long pitchSavedAt;
+
+    /** MVP сілтемесі соңғы сақталған уақыт (epoch millis). «Қазіргі нұсқа» күніне тіркеледі. */
+    @Nullable
+    @ColumnInfo(name = "mvp_saved_at")
+    private Long mvpSavedAt;
+
     @ColumnInfo(name = "created_at")
     private long createdAt;
 
@@ -69,6 +79,8 @@ public class ProjectEntity {
             @Nullable String githubLink,
             @Nullable String mvpLink,
             @Nullable String tractionLink,
+            @Nullable Long pitchSavedAt,
+            @Nullable Long mvpSavedAt,
             long createdAt,
             long updatedAt
     ) {
@@ -82,6 +94,8 @@ public class ProjectEntity {
         this.githubLink = githubLink;
         this.mvpLink = mvpLink;
         this.tractionLink = tractionLink;
+        this.pitchSavedAt = pitchSavedAt;
+        this.mvpSavedAt = mvpSavedAt;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -182,6 +196,24 @@ public class ProjectEntity {
 
     public void setTractionLink(@Nullable String tractionLink) {
         this.tractionLink = tractionLink;
+    }
+
+    @Nullable
+    public Long getPitchSavedAt() {
+        return pitchSavedAt;
+    }
+
+    public void setPitchSavedAt(@Nullable Long pitchSavedAt) {
+        this.pitchSavedAt = pitchSavedAt;
+    }
+
+    @Nullable
+    public Long getMvpSavedAt() {
+        return mvpSavedAt;
+    }
+
+    public void setMvpSavedAt(@Nullable Long mvpSavedAt) {
+        this.mvpSavedAt = mvpSavedAt;
     }
 
     public long getCreatedAt() {

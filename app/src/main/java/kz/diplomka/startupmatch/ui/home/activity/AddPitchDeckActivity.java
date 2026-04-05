@@ -1,7 +1,12 @@
 package kz.diplomka.startupmatch.ui.home.activity;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +21,8 @@ import kz.diplomka.startupmatch.data.local.AppDatabase;
 import kz.diplomka.startupmatch.data.local.entity.ProjectEntity;
 import kz.diplomka.startupmatch.ui.home.navigation.ProjectFlowExtras;
 
+import java.util.Date;
+
 public class AddPitchDeckActivity extends AppCompatActivity {
 
     private long projectId = -1L;
@@ -25,6 +32,7 @@ public class AddPitchDeckActivity extends AppCompatActivity {
     private TextView textLinkedMeta;
     private MaterialButton buttonCheckLink;
     private MaterialButton buttonSaveProject;
+    private View layoutCurrentLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +57,16 @@ public class AddPitchDeckActivity extends AppCompatActivity {
             return;
         }
         ProjectEntity project = AppDatabase.get(this).projectDao().getById(projectId);
-        if (project != null && !TextUtils.isEmpty(project.getPitchDriveLink())) {
+        if (project == null) {
+            return;
+        }
+        if (!TextUtils.isEmpty(project.getPitchDriveLink())) {
             editPitchLink.setText(project.getPitchDriveLink());
+            textLinkedFileName.setText(extractFileName(project.getPitchDriveLink()));
+            long metaMillis = project.getPitchSavedAt() != null && project.getPitchSavedAt() > 0
+                    ? project.getPitchSavedAt()
+                    : project.getUpdatedAt();
+            textLinkedMeta.setText(formatPitchLinkedMeta(metaMillis));
         }
     }
 
@@ -61,8 +77,10 @@ public class AddPitchDeckActivity extends AppCompatActivity {
         textLinkedMeta = findViewById(R.id.textLinkedMeta);
         buttonCheckLink = findViewById(R.id.buttonCheckLink);
         buttonSaveProject = findViewById(R.id.buttonSaveProject);
+        layoutCurrentLink = findViewById(R.id.currentLink);
 
         buttonBack.setOnClickListener(v -> finish());
+        layoutCurrentLink.setOnClickListener(v -> openLastEnteredPitchLink());
     }
 
     private void setupActions() {
@@ -71,7 +89,7 @@ public class AddPitchDeckActivity extends AppCompatActivity {
             if (isDriveLinkValid(link)) {
                 editPitchLink.setError(null);
                 textLinkedFileName.setText(extractFileName(link));
-                textLinkedMeta.setText(getString(R.string.add_pitch_link_connected_meta));
+                textLinkedMeta.setText(formatPitchLinkedMeta(System.currentTimeMillis()));
                 Toast.makeText(this, getString(R.string.add_pitch_link_connected), Toast.LENGTH_SHORT).show();
             } else {
                 editPitchLink.setError(getString(R.string.add_pitch_link_invalid));
@@ -90,9 +108,50 @@ public class AddPitchDeckActivity extends AppCompatActivity {
                 return;
             }
             long now = System.currentTimeMillis();
-            AppDatabase.get(this).projectDao().updatePitchDriveLink(projectId, link, now);
+            AppDatabase.get(this).projectDao().updatePitchDriveLink(projectId, link, now, now);
             Toast.makeText(this, getString(R.string.add_pitch_saved), Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
         });
+    }
+
+    /**
+     * Соңғы жарамды сілтемені ашады: алдымен өрістегі мәтін, одан кейін DB-дағы сақталған pitch.
+     */
+    private void openLastEnteredPitchLink() {
+        String fromField = editPitchLink.getText() == null ? "" : editPitchLink.getText().toString().trim();
+        String link = "";
+        if (isDriveLinkValid(fromField)) {
+            link = fromField;
+        } else if (projectId > 0) {
+            ProjectEntity p = AppDatabase.get(this).projectDao().getById(projectId);
+            if (p != null && !TextUtils.isEmpty(p.getPitchDriveLink())
+                    && isDriveLinkValid(p.getPitchDriveLink().trim())) {
+                link = p.getPitchDriveLink().trim();
+            }
+        }
+        if (TextUtils.isEmpty(link)) {
+            Toast.makeText(this, getString(R.string.add_pitch_open_no_link), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, getString(R.string.add_pitch_open_failed), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Сақталған уақытқа сәйкес meta жолы (Google Drive • күн, уақыт).
+     */
+    private String formatPitchLinkedMeta(long millis) {
+        if (millis <= 0) {
+            return getString(R.string.add_pitch_current_meta_default);
+        }
+        Date d = new Date(millis);
+        String dateStr = DateFormat.getMediumDateFormat(this).format(d);
+        String timeStr = DateFormat.getTimeFormat(this).format(d);
+        return getString(R.string.add_pitch_meta_drive_time, dateStr, timeStr);
     }
 
     private boolean isDriveLinkValid(String link) {
