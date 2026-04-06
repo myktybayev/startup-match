@@ -86,6 +86,9 @@
     <string name="command_list_chip_pitch">Pitch дайын</string>
     <string name="command_list_chip_fptm">FPTM: Founders strong</string>
     <string name="command_list_members_title">Команда мүшелері</string>
+    <string name="command_list_tab_team">Команда мүшелері</string>
+    <string name="command_list_tab_investors">Инвесторлар</string>
+    <string name="linked_investors_placeholder">Инвесторлар тізімі осы бөлімде көрсетіледі. Дизайн келесі жаңартуда қосылады.</string>
     <string name="command_list_empty">Команда мүшелері табылмады. Алдымен «Команда» қадамында мүшелерді қосыңыз.</string>
     <string name="command_list_delete_member_title">Мүшені жою</string>
     <string name="command_list_delete_member_message">«%1$s» мүшесін жою керек пе?</string>
@@ -234,4 +237,88 @@
     <string name="add_traction_field_required">Міндетті</string>
     <string name="add_traction_save_error">Сақтау кезінде қате</string>
     <string name="add_traction_saved">Traction сақталды</string>
+
+    <string name="investors_page_subtitle">Стартапыңызға сәйкес инвесторды табыңыз</string>
+    <string name="investors_search">Іздеу</string>
+    <string name="investors_filter">Сүзгі</string>
+    <string name="investors_badge_verified">Verified</string>
+    <string name="investors_badge_guest">Guest</string>
+    <string name="investors_badge_experienced">Experienced</string>
+    <string name="investors_stat_views_format">%1$d views</string>
+    <string name="investors_stat_challenges_format">%1$d challenges</string>
+
+    <string-array name="investor_filter_labels">
+        <item>Барлығы</item>
+        <item>AI</item>
+        <item>FinTech</item>
+        <item>SaaS</item>
+        <item>EdTech</item>
+        <item>HealthTech</item>
+        <item>Climate</item>
+        <item>Energy</item>
+        <item>B2B SaaS</item>
+        <item>Logistics</item>
+        <item>Marketplace</item>
+        <item>Mobile</item>
+    </string-array>
+
+    <string name="investors_filter_sheet_title">Фильтр</string>
+    <string name="investors_filter_sheet_clear">Тазарту</string>
+    <string name="investors_filter_section_stage">Инвестиция кезеңі</string>
+    <string name="investors_filter_section_industry">Сала</string>
+    <string name="investors_filter_section_ticket">Инвестиция көлемі</string>
+    <string name="investors_filter_section_geo">География</string>
+    <string name="investors_filter_section_status">Инвестор статусы</string>
+    <string name="investors_filter_section_activity">Белсенділік</string>
+    <string name="investors_filter_switch_active">Белсенді инвесторлар</string>
+    <string name="investors_filter_switch_challenges">Тапсырмасы бар инвесторлар</string>
+    <string name="investors_filter_ticket_1_10">$1k–$10k</string>
+    <string name="investors_filter_ticket_10_50">$10k–$50k</string>
+    <string name="investors_filter_ticket_50_plus">$50k+</string>
+    <string name="investors_filter_geo_kz">Kazakhstan</string>
+    <string name="investors_filter_geo_ca">Central Asia</string>
+    <string name="investors_filter_geo_global">Global</string>
+    <string name="investors_filter_see_results">Нәтижені көру (%1$d)</string>
+
+    <string name="investors_cabinet_title">Инвестор кабинеті</string>
+    <string name="investors_cabinet_send_message">Хабарлама жіберу</string>
+    <string name="investors_cabinet_banner_response">Сіз бұл инвесторға %1$d challenge бойынша жауап бердіңіз.</string>
+    <string name="investors_cabinet_criteria_title">Инвестиция критерийлері</string>
+    <string name="investors_cabinet_stage_label">Кезең (Stage)</string>
+    <string name="investors_cabinet_check_label">Чек көлемі</string>
+    <string name="investors_cabinet_geo_label">Аймақ (Geo)</string>
+    <string name="investors_cabinet_sectors_label">Салалар</string>
+    <string name="investors_cabinet_about_title">Инвестор туралы</string>
+    <string name="investors_cabinet_about_body">Ex-founder with 10+ years experience in building and scaling B2B solutions. Currently angel investing in highly scalable SaaS and AI products aimed at global markets.</string>
+    <string name="investors_cabinet_activity_title">Белсенділік</string>
+    <string name="investors_cabinet_stat_views_label">Startups viewed</string>
+    <string name="investors_cabinet_stat_messages_label">Messages sent</string>
+    <string name="investors_cabinet_stat_challenges_label">Challenges</string>
+    <string name="investors_cabinet_challenges_title">Белсенді тапсырмалар</string>
+    <string name="investors_cabinet_challenge_view">Қарау</string>
+    <string name="investors_cabinet_challenges_see_all">Барлық тапсырмаларды көру</string>
+    <string name="investors_cabinet_portfolio_title">Портфолио</string>
+    <string name="investors_cabinet_portfolio_format">Invested in %1$d startups via platform</string>
+    <string name="investors_cabinet_days_left_format">%1$d күн қалды</string>
+    <string name="investors_cabinet_challenge1_title">AI in Fintech Solutions</string>
+    <string name="investors_cabinet_challenge1_body">Looking for early-stage teams building fraud detection or automated scoring systems.</string>
+    <string name="investors_cabinet_challenge2_title">B2B SaaS Onboarding</string>
+    <string name="investors_cabinet_challenge2_body">Seeking tools that reduce onboarding friction for enterprise clients.</string>
+    <string name="investors_cabinet_share_subject">StartupMatch — %1$s</string>
+    <string name="investors_cabinet_message_toast">Хабарлама жіберу (демо)</string>
+
+    <string name="send_pitch_sheet_title">Pitch жіберу</string>
+    <string name="send_pitch_traction_label">Traction (тек сандар)</string>
+    <string name="send_pitch_users">Users</string>
+    <string name="send_pitch_mrr">MRR ($)</string>
+    <string name="send_pitch_growth">Өсу (%)</string>
+    <string name="send_pitch_team_label">Team – why us? (2-3 сөйлем)</string>
+    <string name="send_pitch_team_hint">Негізін қалаушылардың FinTech саласында 10 жылдық тәжірибесі бар…</string>
+    <string name="send_pitch_validation_label">Validation / market (1-2 сөйлем)</string>
+    <string name="send_pitch_validation_hint">Өнімді 50+ B2B клиентпен валидацияладық…</string>
+    <string name="send_pitch_submit">Жіберу</string>
+    <string name="send_pitch_error_project">Алдымен жоба қосыңыз немесе жобаны таңдаңыз.</string>
+    <string name="send_pitch_error_fields">Барлық өрістерді толтырыңыз.</string>
+    <string name="send_pitch_saved">Pitch сақталды</string>
+
 </resources>

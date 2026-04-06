@@ -44,5 +44,29 @@ public final class DatabaseMigrations {
         }
     };
 
-    public static final Migration[] ALL = new Migration[]{MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4};
+    public static final Migration MIGRATION_4_5 = new Migration(4, 5) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase db) {
+            db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS investor_pitches ("
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                            + "project_id INTEGER NOT NULL, "
+                            + "investor_name TEXT NOT NULL, "
+                            + "investor_role TEXT NOT NULL, "
+                            + "traction_users TEXT NOT NULL, "
+                            + "traction_mrr TEXT NOT NULL, "
+                            + "traction_growth TEXT NOT NULL, "
+                            + "team_why_us TEXT NOT NULL, "
+                            + "validation_market TEXT NOT NULL, "
+                            + "created_at INTEGER NOT NULL)"
+            );
+            db.execSQL(
+                    "CREATE INDEX IF NOT EXISTS index_investor_pitches_project_id "
+                            + "ON investor_pitches(project_id)"
+            );
+        }
+    };
+
+    public static final Migration[] ALL =
+            new Migration[]{MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5};
 }

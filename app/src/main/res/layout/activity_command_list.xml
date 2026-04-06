@@ -205,47 +205,28 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/command_list_members_title"
-            android:textColor="#0F1724"
-            android:textSize="20sp" />
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/layoutMembers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:paddingBottom="30dp"
-                android:orientation="vertical" />
-        </ScrollView>
-
-        <TextView
-            android:id="@+id/textEmpty"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutCommand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/command_list_empty"
-            android:textColor="#9AA4B2"
-            android:textSize="14sp"
-            android:visibility="gone" />
+            android:background="@drawable/bg_command_tabs_container"
+            android:padding="4dp"
+            app:tabBackground="@drawable/command_tab_background"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabTextAppearance="@style/TextAppearance.CommandList.Tab"
+            app:tabTextColor="@color/command_tab_text_color" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerCommand"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 

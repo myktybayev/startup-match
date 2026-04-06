@@ -50,6 +50,10 @@
             android:name=".ui.home.activity.CommandListActivity"
             android:exported="false"
             android:label="@string/command_list_title" />
+        <activity
+            android:name=".ui.investors.InvestorsCabinetActivity"
+            android:exported="false"
+            android:label="@string/investors_cabinet_title" />
 
 
         <activity

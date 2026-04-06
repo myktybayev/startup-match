@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet_surface"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <TextView
+            android:id="@+id/textSheetTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/investors_filter_sheet_title"
+            android:textColor="@color/investor_title"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textSheetClearHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:padding="8dp"
+            android:text="@string/investors_filter_sheet_clear"
+            android:textColor="@color/investor_text_secondary"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/investor_filter_divider" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="520dp"
+        android:overScrollMode="never"
+        android:paddingStart="20dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/investors_filter_section_stage"
+                android:textColor="@color/investor_title"
+                android:textSize="16sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipStageIdea"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:text="Idea" />
+
+                    <TextView
+                        android:id="@+id/chipStageMvp"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="MVP" />
+
+                    <TextView
+                        android:id="@+id/chipStageGrowth"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="Growth" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/investors_filter_section_industry"
+                android:textColor="@color/investor_title"
+                android:textSize="16sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipIndAi"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:text="AI" />
+
+                    <TextView
+                        android:id="@+id/chipIndFintech"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="FinTech" />
+
+                    <TextView
+                        android:id="@+id/chipIndEdtech"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="EdTech" />
+
+                    <TextView
+                        android:id="@+id/chipIndSaas"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="SaaS" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/investors_filter_section_ticket"
+                android:textColor="@color/investor_title"
+                android:textSize="16sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipTicket1"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:text="@string/investors_filter_ticket_1_10" />
+
+                    <TextView
+                        android:id="@+id/chipTicket2"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/investors_filter_ticket_10_50" />
+
+                    <TextView
+                        android:id="@+id/chipTicket3"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/investors_filter_ticket_50_plus" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/investors_filter_section_geo"
+                android:textColor="@color/investor_title"
+                android:textSize="16sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipGeoKz"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:text="@string/investors_filter_geo_kz" />
+
+                    <TextView
+                        android:id="@+id/chipGeoCa"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/investors_filter_geo_ca" />
+
+                    <TextView
+                        android:id="@+id/chipGeoGlobal"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/investors_filter_geo_global" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/investors_filter_section_status"
+                android:textColor="@color/investor_title"
+                android:textSize="16sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipStatusGuest"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:text="@string/investors_badge_guest" />
+
+                    <TextView
+                        android:id="@+id/chipStatusVerified"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/investors_badge_verified" />
+
+                    <TextView
+                        android:id="@+id/chipStatusExperienced"
+                        style="@style/Widget.StartupMatch.FilterSheetChip"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/investors_badge_experienced" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/investors_filter_section_activity"
+                android:textColor="@color/investor_title"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/investors_filter_switch_active"
+                    android:textColor="@color/investor_title"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchActiveInvestors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/investors_filter_switch_challenges"
+                    android:textColor="@color/investor_title"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchChallenges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/investor_filter_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/page_background"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <TextView
+                    android:id="@+id/buttonSheetClearFooter"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_investor_filter_footer_clear"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="@string/investors_filter_sheet_clear"
+                    android:textColor="@color/investor_title"
+                    android:textSize="15sp"
+                    app:backgroundTint="@null" />
+
+                <TextView
+                    android:id="@+id/buttonSheetApply"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_investor_filter_apply_gradient"
+                    android:fontFamily="@font/inter_bold"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    tools:text="Нәтижені көру (5)" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

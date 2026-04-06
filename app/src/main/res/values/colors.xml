@@ -22,4 +22,14 @@
     <color name="transparent_gray">#00FFFFFF</color>
     <color name="home_step_title_pending">#9AA4B2</color>
     <color name="home_step_title_done">#0F1724</color>
+    <color name="investor_title">#FF0F1724</color>
+    <color name="investor_text_secondary">#FF9AA4B2</color>
+    <color name="investor_chip_text">#FF10316B</color>
+    <color name="investor_badge_verified_text">#FF4B7BFF</color>
+    <color name="investor_badge_guest_bg">#FFF1F5F9</color>
+    <color name="investor_badge_experienced_bg">#FF7C5CFF</color>
+    <color name="investor_industry_tag_bg">#FFEAF2FF</color>
+    <color name="investor_header_icon_bg">#FFEAF2FF</color>
+    <color name="investor_card_stroke">#14000000</color>
+    <color name="investor_filter_divider">#14000000</color>
 </resources>

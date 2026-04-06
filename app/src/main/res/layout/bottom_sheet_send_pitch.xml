@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="16dp">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_send_pitch_handle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/send_pitch_sheet_title"
+                android:textColor="@color/investor_title"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/buttonCloseSheet"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/dialog_cancel"
+                android:padding="12dp"
+                android:src="@drawable/ic_sheet_close" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/send_pitch_traction_label"
+                android:textColor="@color/investor_title"
+                android:textSize="14sp" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:alignmentMode="alignMargins"
+                android:columnCount="3"
+                android:rowCount="1"
+                android:useDefaultMargins="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="4dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:text="@string/send_pitch_users"
+                        android:textColor="@color/investor_text_secondary"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/editTractionUsers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_send_pitch_field"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:paddingHorizontal="9dp"
+                        android:paddingVertical="13dp"
+                        android:textColor="@color/investor_title"
+                        android:textSize="14sp"
+                        tools:text="15 000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginHorizontal="4dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:text="@string/send_pitch_mrr"
+                        android:textColor="@color/investor_text_secondary"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/editTractionMrr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_send_pitch_field"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:paddingHorizontal="9dp"
+                        android:paddingVertical="13dp"
+                        android:textColor="@color/investor_title"
+                        android:textSize="14sp"
+                        tools:text="25 000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="4dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:text="@string/send_pitch_growth"
+                        android:textColor="@color/investor_text_secondary"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/editTractionGrowth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_send_pitch_field"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:paddingHorizontal="9dp"
+                        android:paddingVertical="13dp"
+                        android:textColor="@color/investor_title"
+                        android:textSize="14sp"
+                        tools:text="20%" />
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/send_pitch_team_label"
+            android:textColor="@color/investor_title"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editTeamWhyUs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_send_pitch_field"
+            android:fontFamily="@font/inter_light"
+            android:gravity="top|start"
+            android:hint="@string/send_pitch_team_hint"
+            android:inputType="textMultiLine|textCapSentences"
+            android:lineSpacingExtra="3dp"
+            android:minHeight="80dp"
+            android:padding="15dp"
+            android:textColor="@color/investor_title"
+            android:textColorHint="@color/investor_text_secondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/send_pitch_validation_label"
+            android:textColor="@color/investor_title"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editValidationMarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_send_pitch_field"
+            android:fontFamily="@font/inter_light"
+            android:gravity="top|start"
+            android:hint="@string/send_pitch_validation_hint"
+            android:inputType="textMultiLine|textCapSentences"
+            android:lineSpacingExtra="3dp"
+            android:minHeight="80dp"
+            android:padding="15dp"
+            android:textColor="@color/investor_title"
+            android:textColorHint="@color/investor_text_secondary"
+            android:textSize="14sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSubmitPitch"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/inter_semibold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="14dp"
+            android:text="@string/send_pitch_submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:backgroundTint="@color/purple_500"
+            app:cornerRadius="4dp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
