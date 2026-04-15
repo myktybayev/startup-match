@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import android.database.Cursor;
+
 /**
  * Room migrations: bump {@link AppDatabase#VERSION} and add a {@link Migration} here,
  * then register it in {@link AppDatabase}.
@@ -148,9 +150,33 @@ public final class DatabaseMigrations {
     public static final Migration MIGRATION_9_10 = new Migration(9, 10) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase db) {
-            db.execSQL("ALTER TABLE auth_users ADD COLUMN phone TEXT NOT NULL DEFAULT ''");
+            if (!hasColumn(db, "auth_users", "phone")) {
+                db.execSQL("ALTER TABLE auth_users ADD COLUMN phone TEXT NOT NULL DEFAULT ''");
+            }
         }
     };
+
+    private static boolean hasColumn(
+            @NonNull SupportSQLiteDatabase db,
+            @NonNull String tableName,
+            @NonNull String columnName
+    ) {
+        Cursor cursor = null;
+        try {
+            cursor = db.query("PRAGMA table_info(" + tableName + ")");
+            int nameColumnIndex = cursor.getColumnIndex("name");
+            while (cursor.moveToNext()) {
+                if (nameColumnIndex >= 0 && columnName.equalsIgnoreCase(cursor.getString(nameColumnIndex))) {
+                    return true;
+                }
+            }
+            return false;
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
 
     public static final Migration[] ALL =
             new Migration[]{
