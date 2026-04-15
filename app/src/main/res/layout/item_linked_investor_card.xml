@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageAvatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@null"
+            app:civ_border_width="0dp"
+            tools:src="@drawable/figma_investor_avatar_1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:textColor="@color/investor_title"
+                        android:textSize="16sp"
+                        tools:text="Асқар Есен" />
+
+                    <TextView
+                        android:id="@+id/textBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:textSize="11sp"
+                        tools:background="@drawable/bg_investor_badge_verified"
+                        tools:text="Verified"
+                        tools:textColor="@color/investor_badge_verified_text" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_linked_investor_status"
+                    android:fontFamily="@font/inter_bold"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="9dp"
+                    android:text="@string/linked_investors_status_sent"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/inter_light"
+                android:lineSpacingExtra="2dp"
+                android:textColor="@color/investor_text_secondary"
+                android:textSize="14sp"
+                tools:text="Angel Investor · AI · FinTech" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textMetricUsers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_linked_traction_chip"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="6dp"
+                    android:textColor="@color/investor_title"
+                    android:textSize="12sp"
+                    tools:text="Users: 12 400" />
+
+                <TextView
+                    android:id="@+id/textMetricMrr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_linked_traction_chip"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="6dp"
+                    android:textColor="@color/investor_title"
+                    android:textSize="12sp"
+                    tools:text="MRR: $8 200" />
+
+                <TextView
+                    android:id="@+id/textMetricGrowth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_linked_traction_chip"
+                    android:fontFamily="@font/inter_semibold"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="6dp"
+                    android:textColor="@color/investor_title"
+                    android:textSize="12sp"
+                    tools:text="Өсу: 19%" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_linked_investor_info_block"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/linked_investor_team_section"
+                    android:textColor="@color/investor_title"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textTeamWhy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/inter_light"
+                    android:lineSpacingExtra="2dp"
+                    android:textColor="@color/investor_text_secondary"
+                    android:textSize="13sp"
+                    tools:text="Founder және CTO…" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_linked_investor_info_block"
+                android:orientation="vertical"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/linked_investor_validation_section"
+                    android:textColor="@color/investor_title"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textValidation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/inter_light"
+                    android:lineSpacingExtra="2dp"
+                    android:textColor="@color/investor_text_secondary"
+                    android:textSize="13sp"
+                    tools:text="Өнімді 50+ B2B…" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textFooterTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/inter_light"
+                android:textColor="@color/investor_text_secondary"
+                android:textSize="14sp"
+                tools:text="Соңғы жіберілім: бүгін, 14:32" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

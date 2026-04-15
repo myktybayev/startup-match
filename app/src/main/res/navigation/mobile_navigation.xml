@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="kz.diplomka.startupmatch.ui.notifications.NotificationsFragment"
+        android:name="kz.diplomka.startupmatch.ui.сhallenges.ChallengesFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_challenges" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="kz.diplomka.startupmatch.ui.notifications.NotificationsFragment"
+        android:name="kz.diplomka.startupmatch.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

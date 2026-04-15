@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import java.util.List;
+
 import kz.diplomka.startupmatch.data.local.AppDatabase;
 import kz.diplomka.startupmatch.data.local.entity.InvestorPitchEntity;
 
@@ -20,5 +22,19 @@ public final class InvestorPitchRepository {
 
     public long savePitch(@NonNull InvestorPitchEntity entity) {
         return db.investorPitchDao().insert(entity);
+    }
+
+    @NonNull
+    public List<InvestorPitchEntity> listForProject(long projectId) {
+        return db.investorPitchDao().listForProject(projectId);
+    }
+
+    @NonNull
+    public List<InvestorPitchEntity> listAllOrderByCreatedDesc() {
+        return db.investorPitchDao().listAllOrderByCreatedDesc();
+    }
+
+    public void deletePitch(long pitchId) {
+        db.investorPitchDao().deleteById(pitchId);
     }
 }

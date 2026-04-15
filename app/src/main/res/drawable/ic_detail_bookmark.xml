@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="20"
+    android:viewportHeight="20">
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M14.17,2.5 C15.09,2.5 15.83,3.25 15.83,4.17 L15.83,16.67 C15.83,16.96 15.68,17.24 15.42,17.39 C15.16,17.54 14.84,17.54 14.59,17.39 L10.83,15.24 C10.31,14.95 9.69,14.95 9.17,15.24 L5.41,17.39 C5.16,17.54 4.84,17.54 4.58,17.39 C4.32,17.24 4.17,16.96 4.17,16.67 L4.17,4.17 C4.17,3.25 4.91,2.5 5.83,2.5 L14.17,2.5Z"
+        android:strokeWidth="1.67"
+        android:strokeColor="@color/investor_title"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

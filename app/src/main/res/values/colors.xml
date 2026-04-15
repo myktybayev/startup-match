@@ -29,7 +29,27 @@
     <color name="investor_badge_guest_bg">#FFF1F5F9</color>
     <color name="investor_badge_experienced_bg">#FF7C5CFF</color>
     <color name="investor_industry_tag_bg">#FFEAF2FF</color>
-    <color name="investor_header_icon_bg">#FFEAF2FF</color>
-    <color name="investor_card_stroke">#14000000</color>
+    <color name="investor_header_icon_bg">#1DEAF2FF</color>
+    <color name="investor_card_stroke">#41000000</color>
     <color name="investor_filter_divider">#14000000</color>
+    <color name="linked_investor_status_bg">#FF28C58A</color>
+    <color name="linked_badge_experienced_text">#FF7C5CFF</color>
+    <color name="challenge_badge_active_text">#047857</color>
+    <color name="challenge_badge_submitted_text">#1D4ED8</color>
+    <color name="challenge_body_secondary">#6B7280</color>
+    <color name="challenge_prize_text">#B45309</color>
+    <!-- Figma: инвестор жауап карточкалары (node 109:3) -->
+    <color name="challenge_answer_card_border_blue">#4B7BFF</color>
+    <color name="challenge_decision_green">#28C58A</color>
+    <color name="challenge_decision_orange">#FFB020</color>
+    <color name="challenge_decision_orange_text">#10201F</color>
+    <color name="challenge_decision_red">#FF5C5C</color>
+    <color name="challenge_submission_chip_bg">#EAF2FF</color>
+    <color name="challenge_link_row_bg">#EAF2FF</color>
+    <color name="profile_header_blue">#4B7CFF</color>
+    <color name="ai_score_ring_track">#FFE8EBF0</color>
+    <!-- Figma node 150:373 «Келген ұсыныстар» -->
+    <color name="investor_incoming_reject_bg">#FFFEE2E2</color>
+    <color name="investor_incoming_reject_text">#FFDC2626</color>
+    <color name="investor_incoming_insight_bg">#FFF1F5F9</color>
 </resources>

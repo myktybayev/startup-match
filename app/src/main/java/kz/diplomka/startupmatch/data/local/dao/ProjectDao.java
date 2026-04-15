@@ -6,6 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.List;
+
 import kz.diplomka.startupmatch.data.local.entity.ProjectEntity;
 
 @Dao
@@ -24,6 +26,10 @@ public interface ProjectDao {
     @Query("SELECT * FROM projects ORDER BY updated_at DESC LIMIT 1")
     @Nullable
     ProjectEntity getLatest();
+
+    /** Тапсырмаға жауап беру экранындағы жоба/команда тізімі. */
+    @Query("SELECT * FROM projects ORDER BY updated_at DESC")
+    List<ProjectEntity> getAll();
 
     @Query("UPDATE projects SET pitch_drive_link = :link, updated_at = :updatedAt, pitch_saved_at = :pitchSavedAt WHERE id = :id")
     void updatePitchDriveLink(long id, @Nullable String link, long updatedAt, long pitchSavedAt);

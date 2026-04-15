@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/investor_navigation_home"
+        android:icon="@drawable/nav_icon_home_active"
+        android:title="@string/investor_nav_home" />
+
+    <item
+        android:id="@+id/investor_navigation_projects"
+        android:icon="@drawable/nav_icon_mvp"
+        android:title="@string/investor_nav_projects" />
+
+    <item
+        android:id="@+id/investor_navigation_challenges"
+        android:icon="@drawable/nav_icon_tasks"
+        android:title="@string/investor_nav_challenges" />
+
+    <item
+        android:id="@+id/investor_navigation_profile"
+        android:icon="@drawable/reg_icon_user"
+        android:title="@string/investor_nav_profile" />
+</menu>

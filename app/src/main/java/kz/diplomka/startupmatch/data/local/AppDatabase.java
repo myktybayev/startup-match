@@ -7,21 +7,28 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import kz.diplomka.startupmatch.data.local.dao.ChallengeSubmissionDao;
 import kz.diplomka.startupmatch.data.local.dao.InvestorPitchDao;
 import kz.diplomka.startupmatch.data.local.dao.ProjectDao;
 import kz.diplomka.startupmatch.data.local.dao.TeamMemberDao;
+import kz.diplomka.startupmatch.data.local.entity.ChallengeSubmissionEntity;
 import kz.diplomka.startupmatch.data.local.entity.InvestorPitchEntity;
 import kz.diplomka.startupmatch.data.local.entity.ProjectEntity;
 import kz.diplomka.startupmatch.data.local.entity.TeamMemberEntity;
 
 @Database(
-        entities = {ProjectEntity.class, TeamMemberEntity.class, InvestorPitchEntity.class},
+        entities = {
+                ProjectEntity.class,
+                TeamMemberEntity.class,
+                InvestorPitchEntity.class,
+                ChallengeSubmissionEntity.class
+        },
         version = AppDatabase.VERSION,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
 
-    public static final int VERSION = 5;
+    public static final int VERSION = 7;
     private static final String DB_NAME = "startupmatch.db";
 
     private static volatile AppDatabase instance;
@@ -31,6 +38,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract TeamMemberDao teamMemberDao();
 
     public abstract InvestorPitchDao investorPitchDao();
+
+    public abstract ChallengeSubmissionDao challengeSubmissionDao();
 
     public static void init(@NonNull Context context) {
         if (instance == null) {

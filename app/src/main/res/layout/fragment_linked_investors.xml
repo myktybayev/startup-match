@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6FBFF">
+    android:background="@color/page_background"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textInvestorsPlaceholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="@font/inter_medium"
-        android:gravity="center"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/linked_investors_placeholder"
-        android:textColor="#9AA4B2"
-        android:textSize="15sp" />
-</FrameLayout>
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/linked_investors_section_title"
+        android:textColor="@color/investor_title"
+        android:textSize="20sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerLinkedInvestors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="24dp"
+            tools:listitem="@layout/item_linked_investor_card" />
+
+        <TextView
+            android:id="@+id/textLinkedInvestorsEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/linked_investors_empty"
+            android:textColor="@color/investor_text_secondary"
+            android:textSize="15sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </FrameLayout>
+</LinearLayout>

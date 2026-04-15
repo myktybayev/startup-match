@@ -6,6 +6,131 @@
     <string name="title_dashboard">Инвесторлар</string>
     <string name="title_notifications">Тапсырмалар</string>
     <string name="title_profile">Профиль</string>
+    <string name="investor_role_title">Investor Role</string>
+    <string name="investor_welcome">Қош келдіңіз,</string>
+    <string name="investor_name_role">Асқар (Инвестор)</string>
+    <string name="investor_search_filter_upper">ІЗДЕУ &amp; СҮЗГІЛЕУ</string>
+    <string name="investor_hero_title">StartupMatch жүйесінде\nжаңа мүмкіндіктер\nашыңыз.</string>
+    <string name="investor_ai_suggestions">СтартАпп жобалар</string>
+    <string name="investor_nav_home">Басты бет</string>
+    <string name="investor_nav_projects">Жобалар</string>
+    <string name="investor_nav_challenges">Тапсырмалар</string>
+    <string name="investor_nav_profile">Профиль</string>
+    <!-- Figma 150:373 — инвестор «Жобалар» / Келген ұсыныстар -->
+    <string name="investor_incoming_screen_title">Келген ұсыныстар</string>
+    <string name="incoming_pitch_label_team">Team - why us</string>
+    <string name="incoming_pitch_label_validation">Validation / market</string>
+    <string name="incoming_pitch_row_pitch_title">Pitch Deck</string>
+    <string name="incoming_pitch_row_github_title">GitHub</string>
+    <string name="incoming_pitch_row_mvp_title">MVP</string>
+    <string name="incoming_pitch_row_traction_title">Traction</string>
+    <string name="incoming_pitch_row_pitch_default">Google Drive сілтемесі</string>
+    <string name="incoming_pitch_row_no_update">Сілтеме әлі жоқ</string>
+    <string name="incoming_pitch_row_last_update">Соңғы жаңарту: %1$s</string>
+    <string name="incoming_pitch_traction_placeholder">Стартап traction деректерін енгізген</string>
+    <string name="incoming_pitch_traction_format">Users: %1$s • MRR: %2$s</string>
+    <string name="incoming_pitch_yesterday_time">Кеше, %1$s</string>
+    <string name="incoming_pitch_reject">Бас тарту</string>
+    <string name="incoming_pitch_start_chat">Сөйлесуді бастау</string>
+    <string name="incoming_pitch_demo_chat">Демо карточка: нақты жоба профилі жақында қосылады</string>
+    <string name="incoming_pitch_rejected">Ұсыныс жойылды</string>
+    <string name="incoming_pitch_open_link_fail">Сілтемені ашу мүмкін болмады</string>
+    <string name="incoming_demo_smartpay_title">SmartPay KZ</string>
+    <string name="incoming_demo_smartpay_time">Кеше, 14:30</string>
+    <string name="incoming_demo_smartpay_team">5 жылдық FinTech тәжірибесі бар топ. Бұрынғы жобамызды ірі банк сатып алған.</string>
+    <string name="incoming_demo_smartpay_validation">10 B2B клиентпен келісімшарт бар, нарық көлемі 2 млрд теңге.</string>
+    <string name="incoming_demo_eduai_title">EduAI</string>
+    <string name="incoming_demo_eduai_time">24 Қазан, 09:15</string>
+    <string name="incoming_demo_eduai_team">EdTech саласында 3 жылдық тәжірибе. Халықаралық олимпиада жеңімпаздарынан құралған команда.</string>
+    <string name="incoming_demo_eduai_validation">Қазақстандағы 50 мектепте пилоттық жоба сәтті іске қосылды.</string>
+    <string name="incoming_demo_github_sub">Соңғы жаңарту: Бүгін, 10:30</string>
+    <string name="incoming_demo_mvp_sub">Соңғы жаңарту: Кеше, 18:45</string>
+    <string name="incoming_demo_traction_smartpay">Users: 15,000 • MRR: $20,000…</string>
+    <string name="incoming_demo_github_sub2">Соңғы жаңарту: 20 Қазан, 14:20</string>
+    <string name="incoming_demo_mvp_sub2">Соңғы жаңарту: 22 Қазан, 11:10</string>
+    <string name="incoming_demo_traction_eduai">Users: 5,000 • MRR: $2,500…</string>
+    <string name="incoming_demo_smartpay_phone">77001234567</string>
+    <string name="incoming_demo_eduai_phone">77009876543</string>
+    <string name="incoming_whatsapp_prefill">Сәлем! StartupMatch арқылы «%1$s» жобасына қызығушылық білдіремін.</string>
+    <string name="incoming_pitch_no_phone">Бұл жобаға байланыс телефоны тіркелмеген. Стартап профилінде нөмірді қосыңыз.</string>
+    <string name="incoming_whatsapp_failed">WhatsApp ашылмады немесе орнатылмаған.</string>
+    <string name="investor_role_soon">Жақында</string>
+    <string name="investor_role_filter">Сүзгі</string>
+    <string name="investor_role_open_pitch">Pitch ашу</string>
+    <string name="investor_role_no_projects">Startup аккаунтында сақталған проекттер табылмады.</string>
+    <string name="investor_role_no_pitch">Бұл жобаға pitch сілтемесі тіркелмеген.</string>
+    <string name="investor_visible_title">Көріну деңгейлері</string>
+    <string name="investor_visible_intro">Инвестор ретінде стартаптардың қандай мәліметін көре алатыныңыз осы жерде көрсетілген.</string>
+    <string name="investor_visible_welcome_desc">Инвестор ретінде\nстартаптардың қандай\nмәліметін көре алатыныңыз\nосы жерде көрсетілген.</string>
+    <string name="investor_visible_welcome_name_format">Қош келдіңіз,\n%1$s</string>
+    <string name="investor_visible_default_level">Ағымдағы деңгей</string>
+    <string name="investor_visible_desc">Платформадағы ақпаратқа қолжетімділік сіздің верификация деңгейіңізге байланысты. Әр деңгейдің не көретінін және келесі статусқа қалай өтетінін төменнен қараңыз.</string>
+    <string name="investor_visible_guest">Guest / Unverified</string>
+    <string name="investor_visible_guest_desc">Бұл деңгей жаңа тіркелген инвесторларға беріледі. Сіз тек стартаптың жалпы көрінісін көре аласыз.</string>
+    <string name="investor_visible_verified_desc">Верификациядан өткен инвесторлар стартаптың толық профилін, pitch deck, GitHub және traction мәліметтерін көре алады.</string>
+    <string name="investor_visible_experienced_desc">Тәжірибелі инвесторлар барлық ақпаратқа қоса advanced analytics және AI insights құралдарын қолдана алады.</string>
+    <string name="investor_visible_open">Ашу</string>
+    <string name="investor_visible_verify_start">Верификациядан өту</string>
+    <string name="investor_visible_experienced_get">Тәжірибелі статусын алу</string>
+    <string name="project_detail_title">Жоба профилі</string>
+    <string name="project_detail_status_active">Активті жоба</string>
+    <string name="project_detail_ai_label">FPTM AI Бағалау</string>
+    <string name="project_detail_tab_general">Жалпы ақпараттар</string>
+    <string name="project_detail_tab_team">Команда мүшелері</string>
+    <string name="project_detail_team_placeholder">Команда мүшелері туралы ақпарат бұл бөлімге қосылады.</string>
+    <string name="project_detail_team_empty">Бұл жобаға әлі команда мүшелері қосылмаған. «Басты» бөлімінен жобаны ашып, команда тізімін толтырыңыз — өзгерістер осы жерде көрінеді.</string>
+    <string name="project_detail_pitch_title">Pitch Deck</string>
+    <string name="project_detail_pitch_subtitle_default">Google Drive құжаты</string>
+    <string name="project_detail_pitch_subtitle_link">Google Drive сілтемесі тіркелген</string>
+    <string name="project_detail_github_title">GitHub</string>
+    <string name="project_detail_mvp_title">MVP Нұсқасы</string>
+    <string name="project_detail_traction_title">Traction Көрсеткіштері</string>
+    <string name="project_detail_metric_users">Пайдаланушылар</string>
+    <string name="project_detail_metric_mrr">MRR</string>
+    <string name="project_detail_metric_mom">Айлық өсу (MoM)</string>
+    <string name="project_detail_metric_retention">KPI Retention</string>
+    <string name="project_detail_default_title">Startup Project</string>
+    <string name="project_detail_default_industry">General</string>
+    <string name="project_detail_default_traction">Сұңғыла жаңарту: 2 сағ бұрын</string>
+    <string name="project_detail_default_product">v1.4 Beta (Web App)</string>
+    <string name="project_detail_score_percent">%1$d%%</string>
+    <string name="project_detail_factor_f">F: 9</string>
+    <string name="project_detail_factor_p">P: 9</string>
+    <string name="project_detail_factor_t">T: 8</string>
+    <string name="project_detail_factor_m">M: 10</string>
+    <string name="project_detail_metric_currency">$%1$,d</string>
+    <string name="project_detail_metric_percent">%1$d%%</string>
+
+    <!-- Profile screen (Figma 99:2163) -->
+    <string name="profile_settings_content_description">Баптаулар</string>
+    <string name="profile_status_active">Стартап профилі белсенді</string>
+    <string name="profile_stat_team_members">Команда\nмүшелері</string>
+    <string name="profile_stat_active_projects">Белсенді\nжобалар</string>
+    <string name="profile_row_team_title">Команда туралы</string>
+    <string name="profile_row_investors_title">Байланысқан инвесторлар</string>
+    <string name="profile_row_account_title">Аккаунт туралы</string>
+    <string name="profile_row_security_title">Профиль және қауіпсіздік</string>
+    <string name="profile_row_security_subtitle">Email, пароль және қолжетімділік баптаулары</string>
+    <string name="profile_help_whatsapp_message">Помощь и поддержка StartupMatch</string>
+    <string name="profile_row_help_title">Көмек және қолдау</string>
+    <string name="profile_row_help_subtitle">Платформа бойынша сұрақтар мен командаға хабарласу</string>
+    <string name="profile_row_logout">Жүйеден шығу</string>
+    <string name="profile_team_roles_placeholder">Әлі команда мүшелері қосылмаған</string>
+    <string name="profile_investors_subtitle_format">%1$d pitch жіберілген, %2$d challenge жауабы</string>
+    <string name="profile_account_subtitle_format">Сала: %1$s • Кезең: %2$s • Қала: %3$s</string>
+    <string name="profile_no_project_hint">Алдымен жоба қосыңыз</string>
+    <string name="profile_toast_soon">Жақында</string>
+    <string name="profile_toast_logout">Сессия аяқталды</string>
+    <string name="investor_profile_default_name">Асқар</string>
+    <string name="investor_profile_default_email">askar@investor.kz</string>
+    <string name="investor_profile_verified_label">Расталған инвестор</string>
+    <string name="investor_profile_saved_projects">Сақталған\nжобалар</string>
+    <string name="investor_profile_active_challenges">Белсенді\nтапсырмалар</string>
+    <string name="investor_profile_row_my_challenges">Менің тапсырмаларым</string>
+    <string name="investor_profile_row_saved_startups">Сақталған стартаптар</string>
+    <string name="investor_profile_row_status">Инвестор статусы (Көріну)</string>
+    <string name="investor_profile_row_help">Көмек және қолдау</string>
+    <string name="investor_profile_row_logout">Жүйеден шығу</string>
     <string name="onboarding_skip">Өткізу</string>
     <string name="onboarding_screen1_title">Инвестор тап.\nӨзіңді дәлелде.</string>
     <string name="onboarding_screen1_subtitle">StartupMatch — стартаптар мен инвесторларды нақты нәтижелер арқылы байланыстыратын платформа.</string>
@@ -89,6 +214,15 @@
     <string name="command_list_tab_team">Команда мүшелері</string>
     <string name="command_list_tab_investors">Инвесторлар</string>
     <string name="linked_investors_placeholder">Инвесторлар тізімі осы бөлімде көрсетіледі. Дизайн келесі жаңартуда қосылады.</string>
+    <string name="linked_investors_section_title">Байланысқан инвесторлар</string>
+    <string name="linked_investors_empty">Әлі ешбір инвесторға pitch жіберілмеген. Инвесторлар бөлімінен pitch жіберіп көріңіз.</string>
+    <string name="linked_investors_status_sent">Pitch жіберілді</string>
+    <string name="linked_investor_last_sent">Соңғы жіберілім: %1$s</string>
+    <string name="linked_investor_metric_users">Users: %1$s</string>
+    <string name="linked_investor_metric_mrr">MRR: %1$s</string>
+    <string name="linked_investor_metric_growth">Өсу: %1$s</string>
+    <string name="linked_investor_team_section">Team - why us</string>
+    <string name="linked_investor_validation_section">Validation / market</string>
     <string name="command_list_empty">Команда мүшелері табылмады. Алдымен «Команда» қадамында мүшелерді қосыңыз.</string>
     <string name="command_list_delete_member_title">Мүшені жою</string>
     <string name="command_list_delete_member_message">«%1$s» мүшесін жою керек пе?</string>
@@ -320,5 +454,158 @@
     <string name="send_pitch_error_project">Алдымен жоба қосыңыз немесе жобаны таңдаңыз.</string>
     <string name="send_pitch_error_fields">Барлық өрістерді толтырыңыз.</string>
     <string name="send_pitch_saved">Pitch сақталды</string>
+
+    <!-- Challenges (Тапсырмалар) screen -->
+    <string name="challenges_screen_title">Тапсырмалар</string>
+    <!-- Figma 153:557 — инвестор тапсырмалар экраны -->
+    <string name="investor_challenges_hero_title">Жаңа тапсырма қосу</string>
+    <string name="investor_challenges_hero_subtitle">Инвестор ретінде стартаптарға жаңа challenge жариялаңыз</string>
+    <string name="investor_challenges_add_content_description">Тапсырма қосу</string>
+    <string name="investor_challenges_add_soon">Тапсырма қосу жақында қолжетімді болады</string>
+    <string name="challenges_screen_subtitle">Сенің стартапқа арналған challenge</string>
+    <!-- Figma 109:3 — жауаптар статусы -->
+    <string name="challenges_answers_hero_title">Инвестор тапсырмаларына\nжіберген жауаптар</string>
+    <string name="challenges_section_my_submissions">Менің жауаптарым</string>
+    <string name="challenge_submission_status_submitted">Жіберілді</string>
+    <string name="challenge_submission_badge_sent">Жіберілген жауап</string>
+    <string name="challenge_decision_accepted">Келістік</string>
+    <string name="challenge_decision_pending">Әлі ойлануда</string>
+    <string name="challenge_decision_declined">Бас тартты</string>
+    <string name="challenge_footer_accepted">Инвестор жауабы қабылданды</string>
+    <string name="challenge_footer_pending">Жауап күтілуде</string>
+    <string name="challenge_footer_declined">Инвестор бұл жолы бас тартты</string>
+    <string name="challenge_submission_pitch_line">Pitch deck — %1$s</string>
+    <string name="challenge_submission_mvp_line">MVP — %1$s</string>
+    <string name="challenge_my_submissions_empty">Әлі тапсырмаға жауап жіберілен жоқ</string>
+    <string name="challenges_section_open">Барлық ашық тапсырмалар</string>
+    <string name="challenges_insight_format">Сіздің профильге %1$d challenge сәйкес келеді</string>
+    <string name="challenges_filter_all">Барлығы</string>
+    <string name="challenges_filter_ai">AI</string>
+    <string name="challenges_filter_mobile">Mobile</string>
+    <string name="challenges_filter_fintech">FinTech</string>
+    <string name="challenges_filter_saas">SaaS</string>
+    <string name="challenges_filter_web">Web</string>
+    <string name="challenges_badge_active">Active</string>
+    <string name="challenges_badge_submitted">Submitted</string>
+    <string name="challenges_cta_answer">Жауап беру</string>
+    <string name="challenges_cta_view_answer">Жауапты көру</string>
+    <string name="challenges_featured_title">AI Fraud Detection — MVP</string>
+    <string name="challenges_featured_body">Сіздің стартапқа арналған challenge — инвестор жауап күтеді…</string>
+    <string name="challenges_featured_deadline">15 сәу 2026</string>
+    <string name="challenges_open_1_title">SaaS MVP — 2 қадамда өтініш жасау</string>
+    <string name="challenges_open_1_prize">2500 $ сыйақы</string>
+    <string name="challenges_open_1_deadline">15 сәу 2026</string>
+    <string name="challenges_tag_saas">SaaS</string>
+    <string name="challenges_tag_web">Web</string>
+    <string name="challenges_open_2_title">AI Fraud Detection — Machine Learning</string>
+    <string name="challenges_open_2_prize">5000 $ сыйақы</string>
+    <string name="challenges_open_2_deadline">20 сәу 2026</string>
+    <string name="challenges_tag_ai">AI</string>
+    <string name="challenges_tag_fintech">FinTech</string>
+    <string name="challenges_open_3_title">Mobile App — MVP</string>
+    <string name="challenges_open_3_prize">3000 $ сыйақы</string>
+    <string name="challenges_open_3_deadline">25 сәу 2026</string>
+    <string name="challenges_open_fintech_title">FinTech KYC — API интеграциясы</string>
+    <string name="challenges_open_fintech_prize">4000 $ сыйақы</string>
+    <string name="challenges_open_fintech_deadline">18 сәу 2026</string>
+    <string name="challenges_open_web_title">Web платформа — landing және тіркелу</string>
+    <string name="challenges_open_web_prize">1800 $ сыйақы</string>
+    <string name="challenges_open_web_deadline">22 сәу 2026</string>
+    <string name="challenges_tag_mobile">Mobile</string>
+    <string name="challenges_sparkle_content_description">Сәйкестік белгісі</string>
+    <string name="challenges_calendar_content_description">Мерзімі</string>
+
+    <!-- Challenge detail (Figma 96:1769) -->
+    <string name="challenge_detail_screen_title">Тапсырма жайлы</string>
+    <string name="challenge_detail_seed_badge">Seed round</string>
+    <string name="challenge_detail_active_badge">Active</string>
+    <string name="challenge_detail_deadline_line">Deadline: %1$s</string>
+    <string name="challenge_detail_section_description">Тапсырма сипаттамасы</string>
+    <string name="challenge_detail_section_requirements">Қойылатын талаптар</string>
+    <string name="challenge_detail_section_outcome">Күтілетін нәтиже</string>
+    <string name="challenge_detail_back_content_description">Артқа</string>
+    <string name="challenge_detail_bookmark_content_description">Бетбелгі</string>
+    <string name="challenge_detail_investor_card_content_description">Инвестор карточкасы</string>
+    <string name="challenge_detail_bookmark_added_toast">Бетбелгіге қосылды (демо)</string>
+    <string name="challenge_detail_answer_toast">Жауап беру (демо)</string>
+    <string name="challenge_detail_body_fintech">Қазіргі таңда B2B секторында төлемдерді қабылдау және өңдеу процесі өте күрделі әрі ұзақ. Біздің мақсатымыз – орта және шағын бизнеске арналған, транзакцияларды жылдам, қауіпсіз әрі тиімді өңдейтін жаңа интеграциялық шешім (API) жасау. Бұл шешім жергілікті және халықаралық төлем жүйелерімен оңай үйлесуі тиіс.</string>
+    <string name="challenge_detail_body_saas">SaaS өніміңізде пайдаланушы ағынын және төлем сценарийлерін нақты KPI арқылы көрсетіңіз. Интеграция құжаттамасы мен onboarding ағыны инвесторға түсінікті болуы керек.</string>
+    <string name="challenge_detail_body_ai">Machine Learning моделін нақты деректермен валидациялаңыз: false positive деңгейі, latency және масштабтау жоспары көрсетілсін. Модельдің түсіндірілетіндігі (explainability) сипатталсын.</string>
+    <string name="challenge_detail_body_mobile">Мобильді қосымшада негізгі user flow дайын болсын: тіркелу, төлем немесе негізгі функция. Crash-free sessions және негізгі экрандардың прототипі қоса берілсін.</string>
+    <string name="challenge_detail_body_web">Landing және тіркелу ағыны conversion үшін оңтайландырылған болсын. SEO/аналитика негіздері және дизайн жүйесі сипатталсын.</string>
+
+    <!-- Талаптар / күтілетін нәтиже — әр тапсырма түрі үшін бөлек -->
+    <!-- SaaS (ашық id 1) -->
+    <string name="challenge_detail_req_saas_1">Multi-tenant SaaS: onboarding және tenant бөлінісі сипатталған</string>
+    <string name="challenge_detail_req_saas_2">Өнім метрикалары (activation, retention) дашбордпен көрсетілген</string>
+    <string name="challenge_detail_req_saas_3">REST немесе GraphQL API және webhook интеграциясының жоспары</string>
+    <string name="challenge_detail_req_saas_4">SOC2 немесе баламалы сәйкестікке дайындық жоспары</string>
+    <string name="challenge_detail_outcome_title_saas">Pilot және Series A дайындығы</string>
+    <string name="challenge_detail_outcome_body_saas">Таңдалған командамен pilot жоба және келесі раундқа стратегиялық кеңес жоспарланады. Өсу KPI-лары бойынша менторлық қосылады.</string>
+
+    <!-- AI (ашық id 2) -->
+    <string name="challenge_detail_req_ai_1">Модельдің негізгі метрикалары (precision/recall, AUC) нақты деректерде</string>
+    <string name="challenge_detail_req_ai_2">Explainability: SHAP немесе баламалы түсіндіру тәсілі</string>
+    <string name="challenge_detail_req_ai_3">Деректер жиынтығының сипаттамасы және bias тексеру нәтижелері</string>
+    <string name="challenge_detail_req_ai_4">Inference latency және жүктеме өскендегі масштабтау сценарийі</string>
+    <string name="challenge_detail_outcome_title_ai">AI жобасына инвестиция және деректер серіктестігі</string>
+    <string name="challenge_detail_outcome_body_ai">Тиімді шешім үшін деректер қолжетімділігі мен келесі раундқа жолдама талқыланады. Зертхана немесе GPU ресурсы бойынша серіктестік мүмкін.</string>
+
+    <!-- Mobile (ашық id 3) -->
+    <string name="challenge_detail_req_mobile_1">iOS немесе Android платформасында жұмыс істейтін MVP немесе прототип</string>
+    <string name="challenge_detail_req_mobile_2">Crash-free sessions және негізгі аналитика (Firebase т.б.) қоса</string>
+    <string name="challenge_detail_req_mobile_3">Push-хабарламалар немесе негізгі offline-сценарий сипаттамасы</string>
+    <string name="challenge_detail_req_mobile_4">App Store / Google Play саясатына сәйкестік және жариялау жоспары</string>
+    <string name="challenge_detail_outcome_title_mobile">Store ілгерлеуі және ұсақ инвестиция</string>
+    <string name="challenge_detail_outcome_body_mobile">Дүкенде орналастыру және өсу үшін микро-грант немесе инвестор тікелей байланысы. User acquisition тесті үшін бюджет келісімі қаралады.</string>
+
+    <!-- FinTech (ашық id 4) -->
+    <string name="challenge_detail_req_fintech_1">MVP нұсқасының дайын болуы немесе кликтелетін прототип</string>
+    <string name="challenge_detail_req_fintech_2">Төлем / API құжаттамасының толық әрі түсінікті жазылуы</string>
+    <string name="challenge_detail_req_fintech_3">PCI DSS және жергілікті реттеуге сәйкестік жоспары</string>
+    <string name="challenge_detail_req_fintech_4">Жоғары жүктемелерге төзімді архитектура және мониторинг</string>
+    <string name="challenge_detail_outcome_title_fintech">Seed round және банк серіктестігі</string>
+    <string name="challenge_detail_outcome_body_fintech">Seed келіссөздері және банк немесе төлем инфрақұрылымымен интеграция жолындағы жолдама. Реттеуші талаптар бойынша кеңес беріледі.</string>
+
+    <!-- Web (ашық id 5) -->
+    <string name="challenge_detail_req_web_1">Landing және conversion funnel: негізгі аналитика (GA т.б.) қоса</string>
+    <string name="challenge_detail_req_web_2">Responsive дизайн және Core Web Vitals бойынша мақсаттар</string>
+    <string name="challenge_detail_req_web_3">Тіркелу / auth ағыны және қауіпсіз сессия</string>
+    <string name="challenge_detail_req_web_4">SEO негіздері немесе маркетингтік интеграциялар сипаттамасы</string>
+    <string name="challenge_detail_outcome_title_web">Growth пакеті және инвестор байланысы</string>
+    <string name="challenge_detail_outcome_body_web">Трафик тесті және conversion жақсарту үшін кеңес. Маркетингтік бюджет немесе инвестордың growth-командасымен байланыс қарастырылады.</string>
+
+    <!-- Featured Active (id 101) -->
+    <string name="challenge_detail_req_featured_active_1">Нақты уақыттағы алаяқтық скорингі немесе rule engine сипаттамасы</string>
+    <string name="challenge_detail_req_featured_active_2">Модельді валидациялау үшін деректердің анонимдалған үлгісі немесе сценарийлер</string>
+    <string name="challenge_detail_req_featured_active_3">Реттеу талаптарына (AML/KYC контексті) сәйкестік жоспары</string>
+    <string name="challenge_detail_req_featured_active_4">Интеграция API және инциденттерді бақылау (alerting)</string>
+    <string name="challenge_detail_outcome_title_featured_active">Пилот және деректер серіктестігі</string>
+    <string name="challenge_detail_outcome_body_featured_active">Таңдалған шешіммен пилот іске асырылады; инвестордың деректер және инфрақұрылым тарапынан серіктестік мүмкін. Келесі раундқа дайындық талқыланады.</string>
+
+    <!-- Featured Submitted (id 102) -->
+    <string name="challenge_detail_req_featured_submitted_1">Жіберілген жауапқа сәйкес құжаттаманы жаңарту</string>
+    <string name="challenge_detail_req_featured_submitted_2">Қауіпсіздік және сәйкестік талаптарына шолу нәтижелері</string>
+    <string name="challenge_detail_req_featured_submitted_3">Инвестордың кері байланысы бойынша итерация жоспары</string>
+    <string name="challenge_detail_req_featured_submitted_4">Келесі кезеңдегі SLA және мерзімдер келісімі</string>
+    <string name="challenge_detail_outcome_title_featured_submitted">Келіссөз және серіктестік форматы</string>
+    <string name="challenge_detail_outcome_body_featured_submitted">Жауап қабылданғаннан кейін стратегиялық кездесу жоспарланады: серіктестік форматы (акция, кеңес, пилот) және мерзімдер бойынша келісім.</string>
+
+    <!-- Challenge answer (Figma SendChallenge 96:1886) -->
+    <string name="challenge_answer_screen_title">Жауап жіберу</string>
+    <string name="challenge_answer_label_project">Жобаңыз</string>
+    <string name="challenge_answer_label_why_fit">Неліктен сіздің команда бұл тапсырмаға сәйкес келеді?</string>
+    <string name="challenge_answer_hint_why_fit">Инвесторға хабарлама жазыңыз… Осы тапсырманы қалай шеше алатыныңызды қысқаша түсіндіріңіз.</string>
+    <string name="challenge_answer_label_pitch">Pitch Deck</string>
+    <string name="challenge_answer_hint_pitch">https://drive.google.com/…</string>
+    <string name="challenge_answer_pitch_helper">Тек Google Drive сілтемесі қолдаулы</string>
+    <string name="challenge_answer_label_mvp">MVP сілтемесі</string>
+    <string name="challenge_answer_hint_mvp">Сілтемені енгізіңіз…</string>
+    <string name="challenge_answer_submit">Жауапты жіберу</string>
+    <string name="challenge_answer_back_content_description">Артқа</string>
+    <string name="challenge_answer_error_no_projects">Алдымен жоба қосыңыз немесе команданы таңдау үшін жоба профилін толтырыңыз.</string>
+    <string name="challenge_answer_error_motivation">Хабарлама мәтінін жазыңыз.</string>
+    <string name="challenge_answer_error_pitch_drive">Pitch Deck үшін Google Drive сілтемесін енгізіңіз.</string>
+    <string name="challenge_answer_success">Жауап жіберілді (демо)</string>
 
 </resources>

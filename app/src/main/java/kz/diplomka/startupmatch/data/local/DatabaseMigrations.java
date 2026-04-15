@@ -67,6 +67,47 @@ public final class DatabaseMigrations {
         }
     };
 
+    public static final Migration MIGRATION_6_7 = new Migration(6, 7) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase db) {
+            db.execSQL("ALTER TABLE projects ADD COLUMN contact_phone TEXT");
+        }
+    };
+
+    public static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase db) {
+            db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS challenge_submissions ("
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                            + "challenge_id INTEGER NOT NULL, "
+                            + "project_id INTEGER NOT NULL, "
+                            + "challenge_title TEXT NOT NULL, "
+                            + "project_name TEXT NOT NULL, "
+                            + "investor_name TEXT NOT NULL, "
+                            + "investor_role TEXT NOT NULL, "
+                            + "investor_avatar_res_id INTEGER NOT NULL, "
+                            + "motivation TEXT NOT NULL, "
+                            + "pitch_link TEXT, "
+                            + "mvp_link TEXT, "
+                            + "status TEXT NOT NULL, "
+                            + "submitted_at INTEGER NOT NULL)"
+            );
+            db.execSQL(
+                    "CREATE UNIQUE INDEX IF NOT EXISTS "
+                            + "index_challenge_submissions_challenge_id_project_id "
+                            + "ON challenge_submissions(challenge_id, project_id)"
+            );
+        }
+    };
+
     public static final Migration[] ALL =
-            new Migration[]{MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5};
+            new Migration[]{
+                    MIGRATION_1_2,
+                    MIGRATION_2_3,
+                    MIGRATION_3_4,
+                    MIGRATION_4_5,
+                    MIGRATION_5_6,
+                    MIGRATION_6_7
+            };
 }

@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import kz.diplomka.startupmatch.R;
+import kz.diplomka.startupmatch.ui.investor_role.InvestorRoleActivity;
 
 public class RolePageActivity extends AppCompatActivity {
 
@@ -37,7 +38,15 @@ public class RolePageActivity extends AppCompatActivity {
 
         cardFounder.setOnClickListener(v -> selectRole("founder"));
         cardInvestor.setOnClickListener(v -> selectRole("investor"));
-        buttonContinue.setOnClickListener(v -> finish());
+
+        buttonContinue.setOnClickListener(v -> {
+            if ("investor".equals(selectedRole)) {
+                startActivity(new Intent(RolePageActivity.this, InvestorRoleActivity.class));
+            } else {
+                startActivity(new Intent(RolePageActivity.this, RegistrationActivity.class));
+            }
+        });
+
         textLogin.setOnClickListener(v ->
                 startActivity(new Intent(RolePageActivity.this, RegistrationActivity.class)));
 

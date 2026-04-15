@@ -16,4 +16,13 @@ public interface InvestorPitchDao {
 
     @Query("SELECT * FROM investor_pitches WHERE project_id = :projectId ORDER BY created_at DESC")
     List<InvestorPitchEntity> listForProject(long projectId);
+
+    @Query("SELECT * FROM investor_pitches ORDER BY created_at DESC")
+    List<InvestorPitchEntity> listAllOrderByCreatedDesc();
+
+    @Query("SELECT COUNT(*) FROM investor_pitches WHERE project_id = :projectId")
+    int countForProject(long projectId);
+
+    @Query("DELETE FROM investor_pitches WHERE id = :id")
+    void deleteById(long id);
 }

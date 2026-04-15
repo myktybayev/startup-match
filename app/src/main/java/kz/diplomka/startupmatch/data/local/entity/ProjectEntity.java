@@ -52,6 +52,11 @@ public class ProjectEntity {
     @ColumnInfo(name = "traction_link")
     private String tractionLink;
 
+    /** Стартап WhatsApp / байланыс нөмірі (тек цифрлар немесе +7… форматы). */
+    @Nullable
+    @ColumnInfo(name = "contact_phone")
+    private String contactPhone;
+
     /** Pitch сілтемесі соңғы сақталған уақыт (epoch millis). */
     @Nullable
     @ColumnInfo(name = "pitch_saved_at")
@@ -79,6 +84,7 @@ public class ProjectEntity {
             @Nullable String githubLink,
             @Nullable String mvpLink,
             @Nullable String tractionLink,
+            @Nullable String contactPhone,
             @Nullable Long pitchSavedAt,
             @Nullable Long mvpSavedAt,
             long createdAt,
@@ -94,6 +100,7 @@ public class ProjectEntity {
         this.githubLink = githubLink;
         this.mvpLink = mvpLink;
         this.tractionLink = tractionLink;
+        this.contactPhone = contactPhone;
         this.pitchSavedAt = pitchSavedAt;
         this.mvpSavedAt = mvpSavedAt;
         this.createdAt = createdAt;
@@ -196,6 +203,15 @@ public class ProjectEntity {
 
     public void setTractionLink(@Nullable String tractionLink) {
         this.tractionLink = tractionLink;
+    }
+
+    @Nullable
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(@Nullable String contactPhone) {
+        this.contactPhone = contactPhone;
     }
 
     @Nullable
