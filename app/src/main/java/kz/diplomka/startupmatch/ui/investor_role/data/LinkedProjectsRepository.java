@@ -10,12 +10,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import kz.diplomka.startupmatch.R;
 import kz.diplomka.startupmatch.data.local.AppDatabase;
+import kz.diplomka.startupmatch.data.local.entity.ChallengeSubmissionEntity;
 import kz.diplomka.startupmatch.data.local.entity.InvestorPitchEntity;
 import kz.diplomka.startupmatch.data.local.entity.ProjectEntity;
 import kz.diplomka.startupmatch.ui.investor_role.model.IncomingPitchCardUi;
@@ -31,19 +33,42 @@ public final class LinkedProjectsRepository {
 
     @NonNull
     public List<IncomingPitchCardUi> loadIncomingPitchCards() {
+        AppDatabase db = AppDatabase.get(appContext);
         List<InvestorPitchEntity> pitches = AppDatabase.get(appContext)
                 .investorPitchDao()
                 .listAllOrderByCreatedDesc();
-        List<IncomingPitchCardUi> out = new ArrayList<>();
+        List<ChallengeSubmissionEntity> submissions = db
+                .challengeSubmissionDao()
+                .listAllOrdered();
+
+        List<TimedIncomingCard> merged = new ArrayList<>();
         for (InvestorPitchEntity pitch : pitches) {
-            ProjectEntity project = AppDatabase.get(appContext).projectDao().getById(pitch.getProjectId());
+            ProjectEntity project = db.projectDao().getById(pitch.getProjectId());
             if (project == null) {
                 continue;
             }
-            out.add(mapPitchToCard(pitch, project));
+            merged.add(new TimedIncomingCard(
+                    mapPitchToCard(pitch, project),
+                    pitch.getCreatedAt()
+            ));
         }
-        if (out.isEmpty()) {
-            out.addAll(demoCards());
+
+        for (ChallengeSubmissionEntity submission : submissions) {
+            ProjectEntity project = db.projectDao().getById(submission.getProjectId());
+            merged.add(new TimedIncomingCard(
+                    mapChallengeSubmissionToCard(submission, project),
+                    submission.getSubmittedAt()
+            ));
+        }
+
+        if (merged.isEmpty()) {
+            return demoCards();
+        }
+        Collections.sort(merged, (a, b) -> Long.compare(b.timestampMs, a.timestampMs));
+
+        List<IncomingPitchCardUi> out = new ArrayList<>();
+        for (TimedIncomingCard row : merged) {
+            out.add(row.card);
         }
         return out;
     }
@@ -74,7 +99,47 @@ public final class LinkedProjectsRepository {
                 emptyToNull(github),
                 emptyToNull(mvp),
                 emptyToNull(tractionLink),
-                emptyToNull(project.getContactPhone())
+                emptyToNull(project.getContactPhone()),
+                emptyToNull(pitch.getTractionUsers()),
+                emptyToNull(pitch.getTractionMrr()),
+                emptyToNull(pitch.getTractionGrowth())
+        );
+    }
+
+    @NonNull
+    private IncomingPitchCardUi mapChallengeSubmissionToCard(
+            @NonNull ChallengeSubmissionEntity submission,
+            @Nullable ProjectEntity project
+    ) {
+        String pitchLink = submission.getPitchLink();
+        String mvpLink = submission.getMvpLink();
+        String githubLink = project != null ? project.getGithubLink() : null;
+        String tractionLink = project != null ? project.getTractionLink() : null;
+        long updatedAt = project != null ? project.getUpdatedAt() : 0L;
+        Long mvpSavedAt = project != null ? project.getMvpSavedAt() : null;
+        return new IncomingPitchCardUi(
+                0L,
+                submission.getProjectId(),
+                submission.getProjectName(),
+                formatPitchReceivedTime(submission.getSubmittedAt()),
+                submission.getMotivation(),
+                appContext.getString(
+                        R.string.incoming_challenge_submission_validation_format,
+                        submission.getChallengeTitle()
+                ),
+                false,
+                pitchSubtitle(pitchLink),
+                githubSubtitle(updatedAt),
+                mvpSubtitle(mvpSavedAt, updatedAt),
+                appContext.getString(R.string.incoming_pitch_traction_placeholder),
+                emptyToNull(pitchLink),
+                emptyToNull(githubLink),
+                emptyToNull(mvpLink),
+                emptyToNull(tractionLink),
+                project != null ? emptyToNull(project.getContactPhone()) : null,
+                null,
+                null,
+                null
         );
     }
 
@@ -184,7 +249,10 @@ public final class LinkedProjectsRepository {
                 "https://github.com/",
                 "https://example.com/mvp",
                 null,
-                appContext.getString(R.string.incoming_demo_smartpay_phone)
+                appContext.getString(R.string.incoming_demo_smartpay_phone),
+                "15,000",
+                "$20,000",
+                "18%"
         ));
         demo.add(new IncomingPitchCardUi(
                 -2L,
@@ -202,8 +270,22 @@ public final class LinkedProjectsRepository {
                 "https://github.com/",
                 "https://example.com/mvp",
                 null,
-                appContext.getString(R.string.incoming_demo_eduai_phone)
+                appContext.getString(R.string.incoming_demo_eduai_phone),
+                "5,000",
+                "$2,500",
+                "12%"
         ));
         return demo;
+    }
+
+    private static final class TimedIncomingCard {
+        @NonNull
+        final IncomingPitchCardUi card;
+        final long timestampMs;
+
+        TimedIncomingCard(@NonNull IncomingPitchCardUi card, long timestampMs) {
+            this.card = card;
+            this.timestampMs = timestampMs;
+        }
     }
 }

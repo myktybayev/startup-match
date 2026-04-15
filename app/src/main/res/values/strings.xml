@@ -29,6 +29,8 @@
     <string name="incoming_pitch_row_last_update">Соңғы жаңарту: %1$s</string>
     <string name="incoming_pitch_traction_placeholder">Стартап traction деректерін енгізген</string>
     <string name="incoming_pitch_traction_format">Users: %1$s • MRR: %2$s</string>
+    <string name="incoming_traction_dialog_title">%1$s — Traction</string>
+    <string name="incoming_challenge_submission_validation_format">Challenge: %1$s</string>
     <string name="incoming_pitch_yesterday_time">Кеше, %1$s</string>
     <string name="incoming_pitch_reject">Бас тарту</string>
     <string name="incoming_pitch_start_chat">Сөйлесуді бастау</string>
@@ -490,6 +492,7 @@
     <string name="investor_challenges_hero_subtitle">Инвестор ретінде стартаптарға жаңа challenge жариялаңыз</string>
     <string name="investor_challenges_add_content_description">Тапсырма қосу</string>
     <string name="investor_challenges_add_soon">Тапсырма қосу жақында қолжетімді болады</string>
+    <string name="investor_challenges_posted_count_format">Сіз %1$d тапсырма жарияладыңыз</string>
 
     <!-- Add new challenge (Figma 160:1659) -->
     <string name="add_new_challenge_back_a11y">Артқа</string>

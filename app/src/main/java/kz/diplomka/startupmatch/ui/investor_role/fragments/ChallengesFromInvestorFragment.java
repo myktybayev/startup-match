@@ -57,7 +57,11 @@ public class ChallengesFromInvestorFragment extends Fragment {
         repository = new ChallengesRepository(requireContext());
 
         binding.textChallengesInsight.setText(
-                getString(R.string.challenges_insight_format, repository.getProfileMatchCount()));
+                getString(
+                        R.string.investor_challenges_posted_count_format,
+                        repository.getPublishedChallengesCount()
+                )
+        );
 
         openAdapter = new OpenChallengesAdapter(requireContext());
         binding.recyclerOpenChallenges.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -74,6 +78,20 @@ public class ChallengesFromInvestorFragment extends Fragment {
         binding.buttonAddChallenge.setOnClickListener(openAddChallenge);
 
         setupFilterChips();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (binding == null || repository == null || openAdapter == null) {
+            return;
+        }
+        binding.textChallengesInsight.setText(
+                getString(
+                        R.string.investor_challenges_posted_count_format,
+                        repository.getPublishedChallengesCount()
+                )
+        );
     }
 
     private void setupFilterChips() {

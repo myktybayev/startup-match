@@ -1,5 +1,6 @@
 package kz.diplomka.startupmatch.ui.investor_role;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -92,7 +93,7 @@ public final class LinkedIncomingPitchesAdapter extends RecyclerView.Adapter<Lin
             bindRowClick(binding.rowPitch, c, item.pitchUrl);
             bindRowClick(binding.rowGithub, c, item.githubUrl);
             bindRowClick(binding.rowMvp, c, item.mvpUrl);
-            bindRowClick(binding.rowTraction, c, item.tractionUrl);
+            binding.rowTraction.setOnClickListener(v -> showTractionDialog(c, item));
 
             binding.buttonReject.setOnClickListener(v -> {
                 int pos = getBindingAdapterPosition();
@@ -125,6 +126,41 @@ public final class LinkedIncomingPitchesAdapter extends RecyclerView.Adapter<Lin
                     }
                 });
             }
+        }
+
+        private void showTractionDialog(@NonNull Context c, @NonNull IncomingPitchCardUi item) {
+            String users = normalizeValue(item.tractionUsers);
+            String mrr = normalizeValue(item.tractionMrr);
+            String growth = normalizeValue(item.tractionGrowth);
+            if (users == null && mrr == null && growth == null) {
+                Toast.makeText(c, R.string.incoming_pitch_traction_placeholder, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            String title = c.getString(R.string.incoming_traction_dialog_title, item.startupName);
+            String message = c.getString(R.string.linked_investor_metric_users, safe(users))
+                    + "\n"
+                    + c.getString(R.string.linked_investor_metric_mrr, safe(mrr))
+                    + "\n"
+                    + c.getString(R.string.linked_investor_metric_growth, safe(growth));
+            new AlertDialog.Builder(c)
+                    .setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton(R.string.dialog_close, null)
+                    .show();
+        }
+
+        @Nullable
+        private String normalizeValue(@Nullable String value) {
+            if (TextUtils.isEmpty(value)) {
+                return null;
+            }
+            String normalized = value.trim();
+            return normalized.isEmpty() ? null : normalized;
+        }
+
+        @NonNull
+        private String safe(@Nullable String value) {
+            return value == null ? "—" : value;
         }
     }
 }

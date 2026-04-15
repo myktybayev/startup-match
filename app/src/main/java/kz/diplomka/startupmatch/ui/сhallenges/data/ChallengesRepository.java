@@ -51,6 +51,16 @@ public class ChallengesRepository {
         return 3;
     }
 
+    /**
+     * Инвестор жариялаған тапсырмалар саны (DB).
+     */
+    public int getPublishedChallengesCount() {
+        return AppDatabase.get(appContext)
+                .investorChallengeDao()
+                .listAllOrdered()
+                .size();
+    }
+
     @NonNull
     public List<FeaturedChallenge> getFeaturedChallenges() {
         String title = appContext.getString(R.string.challenges_featured_title);

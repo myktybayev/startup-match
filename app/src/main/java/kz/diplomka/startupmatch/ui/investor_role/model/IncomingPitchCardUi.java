@@ -39,6 +39,12 @@ public final class IncomingPitchCardUi {
     /** Жобаның WhatsApp нөмірі (сыйкестендіру үшін {@link kz.diplomka.startupmatch.util.WhatsAppUtils}). */
     @Nullable
     public final String contactPhone;
+    @Nullable
+    public final String tractionUsers;
+    @Nullable
+    public final String tractionMrr;
+    @Nullable
+    public final String tractionGrowth;
 
     public IncomingPitchCardUi(
             long pitchId,
@@ -56,7 +62,10 @@ public final class IncomingPitchCardUi {
             @Nullable String githubUrl,
             @Nullable String mvpUrl,
             @Nullable String tractionUrl,
-            @Nullable String contactPhone
+            @Nullable String contactPhone,
+            @Nullable String tractionUsers,
+            @Nullable String tractionMrr,
+            @Nullable String tractionGrowth
     ) {
         this.pitchId = pitchId;
         this.projectId = projectId;
@@ -74,5 +83,8 @@ public final class IncomingPitchCardUi {
         this.mvpUrl = mvpUrl;
         this.tractionUrl = tractionUrl;
         this.contactPhone = contactPhone;
+        this.tractionUsers = tractionUsers;
+        this.tractionMrr = tractionMrr;
+        this.tractionGrowth = tractionGrowth;
     }
 }
