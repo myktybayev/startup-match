@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import kz.diplomka.startupmatch.R;
+import kz.diplomka.startupmatch.data.local.session.InvestorSessionPrefs;
 import kz.diplomka.startupmatch.databinding.FragmentInvestorHomeBinding;
 import kz.diplomka.startupmatch.ui.investor_role.InvestorProjectSuggestionsAdapter;
 import kz.diplomka.startupmatch.ui.investor_role.data.InvestorHomeRepository;
@@ -56,11 +57,16 @@ public class InvestorHomeFragment extends Fragment {
         suggestionsAdapter = new InvestorProjectSuggestionsAdapter(requireContext());
         binding.recyclerSuggestions.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerSuggestions.setAdapter(suggestionsAdapter);
+        bindInvestorName();
 
         binding.buttonFilter.setOnClickListener(v -> {
+            String investorName = InvestorSessionPrefs.getDisplayName(requireContext());
+            if (investorName == null || investorName.trim().isEmpty()) {
+                investorName = getString(R.string.investor_name_role);
+            }
             Intent intent = InvestorVisibleActivity.newIntent(
                     requireContext(),
-                    getString(R.string.investor_name_role),
+                    investorName,
                     "Verified Investor");
             startActivity(intent);
         });
@@ -71,7 +77,19 @@ public class InvestorHomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        bindInvestorName();
         loadSuggestions();
+    }
+
+    private void bindInvestorName() {
+        if (binding == null) {
+            return;
+        }
+        String investorName = InvestorSessionPrefs.getDisplayName(requireContext());
+        if (investorName == null || investorName.trim().isEmpty()) {
+            investorName = getString(R.string.investor_name_role);
+        }
+        binding.investorName.setText(investorName);
     }
 
     private void loadSuggestions() {

@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import kz.diplomka.startupmatch.R;
+import kz.diplomka.startupmatch.data.local.session.InvestorSessionPrefs;
 import kz.diplomka.startupmatch.databinding.ActivityInvestorRoleBinding;
 
 public class InvestorRoleActivity extends AppCompatActivity {
@@ -20,6 +21,10 @@ public class InvestorRoleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityInvestorRoleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (InvestorSessionPrefs.getDisplayName(this) == null) {
+            InvestorSessionPrefs.setDisplayName(this, getString(R.string.investor_name_role));
+        }
 
         BottomNavigationView navView = binding.navViewInvestor;
         NavController navController = Navigation.findNavController(this, R.id.nav_host_investor);

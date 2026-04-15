@@ -2,8 +2,11 @@ package kz.diplomka.startupmatch.ui.сhallenges;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,11 +23,13 @@ import kz.diplomka.startupmatch.ui.сhallenges.model.ChallengeDetail;
 public class ChallengeDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_CHALLENGE_ID = "kz.diplomka.startupmatch.extra.CHALLENGE_ID";
-
+    String act = "";
     @NonNull
     public static Intent newIntent(@NonNull Context context, long challengeId) {
         Intent intent = new Intent(context, ChallengeDetailActivity.class);
+        intent.putExtra("act", "startup");
         intent.putExtra(EXTRA_CHALLENGE_ID, challengeId);
+
         return intent;
     }
 
@@ -37,6 +42,12 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         long id = getIntent().getLongExtra(EXTRA_CHALLENGE_ID, -1L);
+        act = getIntent().getStringExtra("act");
+
+        if(act.equals("investor")){
+            binding.answerButton.setVisibility(View.GONE);
+        }
+
         ChallengesRepository repository = new ChallengesRepository(this);
         ChallengeDetail detail = repository.getChallengeDetail(id);
 
@@ -66,7 +77,15 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         binding.textDescription.setText(detail.getDescription());
         binding.textInvestorName.setText(detail.getInvestorProfile().name);
         binding.textInvestorRole.setText(detail.getInvestorProfile().role);
-        binding.imageInvestor.setImageResource(detail.getInvestorProfile().avatarResId);
+        if (!TextUtils.isEmpty(detail.getInvestorPhotoUri())) {
+            try {
+                binding.imageInvestor.setImageURI(Uri.parse(detail.getInvestorPhotoUri()));
+            } catch (Exception e) {
+                binding.imageInvestor.setImageResource(detail.getInvestorProfile().avatarResId);
+            }
+        } else {
+            binding.imageInvestor.setImageResource(detail.getInvestorProfile().avatarResId);
+        }
         binding.textOutcomeTitle.setText(detail.getOutcomeTitle());
         binding.textOutcomeDescription.setText(detail.getOutcomeDescription());
 

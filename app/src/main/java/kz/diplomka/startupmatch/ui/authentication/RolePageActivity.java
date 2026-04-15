@@ -12,13 +12,13 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import kz.diplomka.startupmatch.R;
-import kz.diplomka.startupmatch.ui.investor_role.InvestorRoleActivity;
+import kz.diplomka.startupmatch.data.local.session.AuthRolePrefs;
 
 public class RolePageActivity extends AppCompatActivity {
 
     private MaterialCardView cardFounder;
     private MaterialCardView cardInvestor;
-    private MaterialButton buttonContinue;
+    private MaterialButton buttonRegister;
     private ImageView indicatorFounder;
     private ImageView indicatorInvestor;
     private TextView textLogin;
@@ -31,7 +31,7 @@ public class RolePageActivity extends AppCompatActivity {
 
         cardFounder = findViewById(R.id.cardFounder);
         cardInvestor = findViewById(R.id.cardInvestor);
-        buttonContinue = findViewById(R.id.buttonContinueRole);
+        buttonRegister = findViewById(R.id.buttonRegister);
         indicatorFounder = findViewById(R.id.viewSelectedIndicatorFounder);
         indicatorInvestor = findViewById(R.id.viewSelectedIndicatorInvestor);
         textLogin = findViewById(R.id.textLogin);
@@ -39,19 +39,16 @@ public class RolePageActivity extends AppCompatActivity {
         cardFounder.setOnClickListener(v -> selectRole("founder"));
         cardInvestor.setOnClickListener(v -> selectRole("investor"));
 
-        buttonContinue.setOnClickListener(v -> {
-            if ("investor".equals(selectedRole)) {
-                startActivity(new Intent(RolePageActivity.this, InvestorRoleActivity.class));
-            } else {
-                startActivity(new Intent(RolePageActivity.this, RegistrationActivity.class));
-            }
+        buttonRegister.setOnClickListener(v -> {
+            AuthRolePrefs.setSelectedRole(RolePageActivity.this, selectedRole);
+            startActivity(new Intent(RolePageActivity.this, RegistrationActivity.class));
         });
 
         textLogin.setOnClickListener(v ->
-                startActivity(new Intent(RolePageActivity.this, RegistrationActivity.class)));
+                startActivity(new Intent(RolePageActivity.this, LoginActivity.class)));
 
-        buttonContinue.setEnabled(true);
-        buttonContinue.setAlpha(1f);
+        buttonRegister.setEnabled(true);
+        buttonRegister.setAlpha(1f);
         selectRole("founder");
     }
 

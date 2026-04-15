@@ -7,10 +7,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -23,8 +25,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kz.diplomka.startupmatch.R;
 import kz.diplomka.startupmatch.data.local.AppDatabase;
+import kz.diplomka.startupmatch.data.local.entity.AuthUserEntity;
 import kz.diplomka.startupmatch.data.local.entity.ProjectEntity;
 import kz.diplomka.startupmatch.data.local.entity.TeamMemberEntity;
+import kz.diplomka.startupmatch.data.local.session.AuthRolePrefs;
 import kz.diplomka.startupmatch.data.local.session.SessionLocalStore;
 import kz.diplomka.startupmatch.databinding.FragmentProfileBinding;
 import kz.diplomka.startupmatch.ui.authentication.RolePageActivity;
@@ -51,12 +55,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.buttonProfileSettings.setOnClickListener(v ->
-                Toast.makeText(requireContext(), R.string.profile_toast_soon, Toast.LENGTH_SHORT).show());
+        binding.buttonProfileSettings.setOnClickListener(v -> showAccountCredentialsDialog());
+        binding.profileSetting.setOnClickListener(v -> showAccountCredentialsDialog());
         binding.rowTeamAbout.setOnClickListener(v -> openCommandList());
         binding.rowLinkedInvestors.setOnClickListener(v -> openCommandList());
-        binding.rowAccount.setOnClickListener(v ->
-                Toast.makeText(requireContext(), R.string.profile_toast_soon, Toast.LENGTH_SHORT).show());
         binding.rowSecurity.setOnClickListener(v ->
                 Toast.makeText(requireContext(), R.string.profile_toast_soon, Toast.LENGTH_SHORT).show());
         binding.rowHelp.setOnClickListener(v ->
@@ -78,27 +80,32 @@ public class ProfileFragment extends Fragment {
         if (binding == null) {
             return;
         }
+        AuthUserEntity authUser = resolveCurrentAuthUser();
+        if (authUser != null && !TextUtils.isEmpty(authUser.getPhone())) {
+            binding.textProfilePhone.setText(authUser.getPhone());
+        } else {
+            binding.textProfilePhone.setText(R.string.profile_phone_not_set);
+        }
+
         AppDatabase db = AppDatabase.get(requireContext());
         ProjectEntity project = db.projectDao().getLatest();
         if (project == null) {
             binding.textProfileTeamName.setText(R.string.profile_no_project_hint);
-            binding.textProfileEmail.setText("");
             binding.textStatTeamMembers.setText("0");
             binding.textStatActiveProjects.setText("0");
-            binding.textProfileTeamAboutSubtitle.setText(R.string.profile_team_roles_placeholder);
             binding.textProfileInvestorsSubtitle.setText(
                     getString(R.string.profile_investors_subtitle_format, 0, 0));
-            binding.textProfileAccountSubtitle.setText(R.string.profile_no_project_hint);
             return;
         }
         binding.textProfileTeamName.setText(project.getName());
-        binding.textProfileEmail.setText(teamEmailFromProject(project.getName()));
         int members = db.teamMemberDao().countForProject(project.getId());
         binding.textStatTeamMembers.setText(String.valueOf(members));
         List<ProjectEntity> all = db.projectDao().getAll();
         binding.textStatActiveProjects.setText(String.valueOf(all.size()));
+
         List<TeamMemberEntity> memList = db.teamMemberDao().listForProject(project.getId());
         binding.textProfileTeamAboutSubtitle.setText(buildRolesLine(memList));
+
         int pitches = db.investorPitchDao().countForProject(project.getId());
         int challenges = db.challengeSubmissionDao().countForProject(project.getId());
         binding.textProfileInvestorsSubtitle.setText(
@@ -106,12 +113,7 @@ public class ProfileFragment extends Fragment {
         String stage = project.getMvpLink() != null && !project.getMvpLink().trim().isEmpty()
                 ? "MVP"
                 : "Idea";
-        binding.textProfileAccountSubtitle.setText(
-                getString(
-                        R.string.profile_account_subtitle_format,
-                        project.getIndustry(),
-                        stage,
-                        project.getMarket()));
+
     }
 
     private void openCommandList() {
@@ -121,6 +123,43 @@ public class ProfileFragment extends Fragment {
             i.putExtra(ProjectFlowExtras.EXTRA_PROJECT_ID, p.getId());
         }
         startActivity(i);
+    }
+
+    private void showAccountCredentialsDialog() {
+        if (binding == null) {
+            return;
+        }
+        AuthUserEntity user = resolveCurrentAuthUser();
+        if (user == null) {
+            Toast.makeText(requireContext(), R.string.profile_credentials_not_found, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        View dialogView = LayoutInflater.from(requireContext())
+                .inflate(R.layout.dialog_profile_account_credentials, null, false);
+        TextView textEmail = dialogView.findViewById(R.id.text_dialog_email);
+        TextView textPassword = dialogView.findViewById(R.id.text_dialog_password);
+        textEmail.setText(user.getEmail());
+        textPassword.setText(user.getPassword());
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .create();
+        dialogView.findViewById(R.id.button_dialog_close).setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    @Nullable
+    private AuthUserEntity resolveCurrentAuthUser() {
+        AppDatabase db = AppDatabase.get(requireContext());
+        String role = AuthRolePrefs.getSelectedRole(requireContext());
+        if (!TextUtils.isEmpty(role)) {
+            AuthUserEntity byRole = db.authUserDao().getLatestByRole(role);
+            if (byRole != null) {
+                return byRole;
+            }
+        }
+        return db.authUserDao().getLatest();
     }
 
     private void logout() {

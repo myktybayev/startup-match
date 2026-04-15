@@ -101,6 +101,57 @@ public final class DatabaseMigrations {
         }
     };
 
+    public static final Migration MIGRATION_7_8 = new Migration(7, 8) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase db) {
+            db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS investor_challenges ("
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                            + "title TEXT NOT NULL, "
+                            + "description TEXT NOT NULL, "
+                            + "team_fit TEXT NOT NULL, "
+                            + "deadline_ms INTEGER NOT NULL, "
+                            + "deadline_label TEXT NOT NULL, "
+                            + "tag_keys_csv TEXT NOT NULL, "
+                            + "requirements_json TEXT NOT NULL, "
+                            + "reward_type TEXT NOT NULL, "
+                            + "filter_type TEXT NOT NULL, "
+                            + "investor_name TEXT NOT NULL, "
+                            + "investor_role TEXT NOT NULL, "
+                            + "investor_photo_uri TEXT, "
+                            + "stage_badge TEXT NOT NULL, "
+                            + "created_at INTEGER NOT NULL)"
+            );
+        }
+    };
+
+    public static final Migration MIGRATION_8_9 = new Migration(8, 9) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase db) {
+            db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS auth_users ("
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+                            + "full_name TEXT NOT NULL, "
+                            + "email TEXT NOT NULL, "
+                            + "password TEXT NOT NULL, "
+                            + "phone TEXT NOT NULL, "
+                            + "role TEXT NOT NULL, "
+                            + "created_at INTEGER NOT NULL)"
+            );
+            db.execSQL(
+                    "CREATE UNIQUE INDEX IF NOT EXISTS index_auth_users_email "
+                            + "ON auth_users(email)"
+            );
+        }
+    };
+
+    public static final Migration MIGRATION_9_10 = new Migration(9, 10) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase db) {
+            db.execSQL("ALTER TABLE auth_users ADD COLUMN phone TEXT NOT NULL DEFAULT ''");
+        }
+    };
+
     public static final Migration[] ALL =
             new Migration[]{
                     MIGRATION_1_2,
@@ -108,6 +159,9 @@ public final class DatabaseMigrations {
                     MIGRATION_3_4,
                     MIGRATION_4_5,
                     MIGRATION_5_6,
-                    MIGRATION_6_7
+                    MIGRATION_6_7,
+                    MIGRATION_7_8,
+                    MIGRATION_8_9,
+                    MIGRATION_9_10
             };
 }

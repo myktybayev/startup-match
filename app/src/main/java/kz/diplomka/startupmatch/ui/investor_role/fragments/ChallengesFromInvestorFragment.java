@@ -1,11 +1,13 @@
 package kz.diplomka.startupmatch.ui.investor_role.fragments;
 
+import static kz.diplomka.startupmatch.ui.сhallenges.ChallengeDetailActivity.EXTRA_CHALLENGE_ID;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,17 +16,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import kz.diplomka.startupmatch.R;
+import kz.diplomka.startupmatch.data.local.session.InvestorSessionPrefs;
 import kz.diplomka.startupmatch.databinding.FragmentInvestorChallengesBinding;
+import kz.diplomka.startupmatch.ui.investor_role.AddNewChallengeActivity;
 import kz.diplomka.startupmatch.ui.сhallenges.ChallengeDetailActivity;
 import kz.diplomka.startupmatch.ui.сhallenges.OpenChallengesAdapter;
 import kz.diplomka.startupmatch.ui.сhallenges.data.ChallengesRepository;
 import kz.diplomka.startupmatch.ui.сhallenges.model.Challenge;
 import kz.diplomka.startupmatch.ui.сhallenges.model.ChallengeType;
 
-/**
- * Инвестор «Тапсырмалар» экраны (Figma 153:557). Ашық тапсырмалар тізімі мен сүзгілер
- * {@link kz.diplomka.startupmatch.ui.сhallenges.ChallengesFragment} логикасын қайта қолданады.
- */
 public class ChallengesFromInvestorFragment extends Fragment {
 
     private static final int[] CHIP_IDS = {
@@ -65,13 +65,13 @@ public class ChallengesFromInvestorFragment extends Fragment {
         openAdapter.submit(repository.filterOpenChallenges(null));
         openAdapter.setListener(this::openChallengeDetail);
 
-        View.OnClickListener addSoon = v -> Toast.makeText(
-                requireContext(),
-                R.string.investor_challenges_add_soon,
-                Toast.LENGTH_SHORT
-        ).show();
-        binding.cardAddChallenge.setOnClickListener(addSoon);
-        binding.buttonAddChallenge.setOnClickListener(addSoon);
+        View.OnClickListener openAddChallenge = v -> {
+            String name = InvestorSessionPrefs.getDisplayName(requireContext());
+            String photoUri = InvestorSessionPrefs.getAvatarUriString(requireContext());
+            startActivity(AddNewChallengeActivity.newIntent(requireContext(), name, photoUri));
+        };
+        binding.cardAddChallenge.setOnClickListener(openAddChallenge);
+        binding.buttonAddChallenge.setOnClickListener(openAddChallenge);
 
         setupFilterChips();
     }
@@ -105,7 +105,10 @@ public class ChallengesFromInvestorFragment extends Fragment {
     }
 
     private void openChallengeDetail(@NonNull Challenge challenge) {
-        startActivity(ChallengeDetailActivity.newIntent(requireContext(), challenge.getId()));
+        Intent intent = new Intent(requireContext(), ChallengeDetailActivity.class);
+        intent.putExtra("act", "investor");
+        intent.putExtra(EXTRA_CHALLENGE_ID, challenge.getId());
+        startActivity(intent);
     }
 
     @Nullable

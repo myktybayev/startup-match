@@ -19,24 +19,25 @@ import java.util.List;
 import kz.diplomka.startupmatch.R;
 import kz.diplomka.startupmatch.databinding.ItemIncomingPitchCardBinding;
 import kz.diplomka.startupmatch.ui.investor_role.model.IncomingPitchCardUi;
-import kz.diplomka.startupmatch.util.WhatsAppUtils;
 
 public final class LinkedIncomingPitchesAdapter extends RecyclerView.Adapter<LinkedIncomingPitchesAdapter.Holder> {
 
     private final List<IncomingPitchCardUi> items = new ArrayList<>();
     private final LayoutInflater inflater;
-    private final PitchDeleter pitchDeleter;
+    private final PitchActions pitchActions;
 
-    public interface PitchDeleter {
+    public interface PitchActions {
         void deletePitch(long pitchId);
+
+        void openProjectChat(long projectId, @NonNull String startupName, @Nullable String fallbackPhone);
     }
 
     public LinkedIncomingPitchesAdapter(
             @NonNull Context context,
-            @NonNull PitchDeleter pitchDeleter
+            @NonNull PitchActions pitchActions
     ) {
         this.inflater = LayoutInflater.from(context);
-        this.pitchDeleter = pitchDeleter;
+        this.pitchActions = pitchActions;
     }
 
     public void submit(@NonNull List<IncomingPitchCardUi> list) {
@@ -99,15 +100,14 @@ public final class LinkedIncomingPitchesAdapter extends RecyclerView.Adapter<Lin
                     return;
                 }
                 if (item.pitchId > 0L) {
-                    pitchDeleter.deletePitch(item.pitchId);
+                    pitchActions.deletePitch(item.pitchId);
                     Toast.makeText(c, R.string.incoming_pitch_rejected, Toast.LENGTH_SHORT).show();
                 }
                 items.remove(pos);
                 notifyItemRemoved(pos);
             });
             binding.buttonStartChat.setOnClickListener(v -> {
-                String message = c.getString(R.string.incoming_whatsapp_prefill, item.startupName);
-                WhatsAppUtils.openChatOrToast(c, item.contactPhone, message);
+                pitchActions.openProjectChat(item.projectId, item.startupName, item.contactPhone);
             });
         }
 

@@ -3,12 +3,17 @@ package kz.diplomka.startupmatch.ui.investor_role;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import kz.diplomka.startupmatch.R;
+import kz.diplomka.startupmatch.data.local.AppDatabase;
+import kz.diplomka.startupmatch.data.local.entity.AuthUserEntity;
+import kz.diplomka.startupmatch.data.local.session.AuthRolePrefs;
 import kz.diplomka.startupmatch.databinding.ActivityInvestorVisibleBinding;
 
 public class InvestorVisibleActivity extends AppCompatActivity {
@@ -36,12 +41,15 @@ public class InvestorVisibleActivity extends AppCompatActivity {
         binding = ActivityInvestorVisibleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        String investorName = getIntent().getStringExtra(EXTRA_INVESTOR_NAME);
+        String investorName = resolveInvestorNameFromDb();
+        if (TextUtils.isEmpty(investorName)) {
+            investorName = getIntent().getStringExtra(EXTRA_INVESTOR_NAME);
+        }
         String investorLevel = getIntent().getStringExtra(EXTRA_INVESTOR_LEVEL);
-        if (investorName == null || investorName.trim().isEmpty()) {
+        if (TextUtils.isEmpty(investorName)) {
             investorName = getString(R.string.investor_name_role);
         }
-        if (investorLevel == null || investorLevel.trim().isEmpty()) {
+        if (TextUtils.isEmpty(investorLevel)) {
             investorLevel = getString(R.string.investor_visible_default_level);
         }
 
@@ -56,6 +64,17 @@ public class InvestorVisibleActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.investor_visible_open, Toast.LENGTH_SHORT).show());
         binding.buttonGetExperienced.setOnClickListener(v ->
                 Toast.makeText(this, R.string.investor_visible_open, Toast.LENGTH_SHORT).show());
+    }
+
+    @Nullable
+    private String resolveInvestorNameFromDb() {
+        AuthUserEntity user = AppDatabase.get(this)
+                .authUserDao()
+                .getLatestByRole(AuthRolePrefs.ROLE_INVESTOR);
+        if (user == null || TextUtils.isEmpty(user.getFullName())) {
+            return null;
+        }
+        return user.getFullName().trim();
     }
 
     @Override

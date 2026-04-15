@@ -1,6 +1,7 @@
 package kz.diplomka.startupmatch.ui.сhallenges.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +37,8 @@ public final class ChallengeDetail {
     private final String outcomeTitle;
     @NonNull
     private final String outcomeDescription;
+    @Nullable
+    private final String investorPhotoUri;
 
     public ChallengeDetail(
             long id,
@@ -48,7 +51,8 @@ public final class ChallengeDetail {
             @NonNull String description,
             @NonNull List<String> requirements,
             @NonNull String outcomeTitle,
-            @NonNull String outcomeDescription) {
+            @NonNull String outcomeDescription,
+            @Nullable String investorPhotoUri) {
         this.id = id;
         this.stageBadge = stageBadge;
         this.statusBadge = statusBadge;
@@ -60,6 +64,7 @@ public final class ChallengeDetail {
         this.requirements = Collections.unmodifiableList(requirements);
         this.outcomeTitle = outcomeTitle;
         this.outcomeDescription = outcomeDescription;
+        this.investorPhotoUri = investorPhotoUri;
     }
 
     public long getId() {
@@ -114,5 +119,10 @@ public final class ChallengeDetail {
     @NonNull
     public String getOutcomeDescription() {
         return outcomeDescription;
+    }
+
+    @Nullable
+    public String getInvestorPhotoUri() {
+        return investorPhotoUri;
     }
 }

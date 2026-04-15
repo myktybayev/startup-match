@@ -1,5 +1,8 @@
 package kz.diplomka.startupmatch.ui.сhallenges;
 
+import static kz.diplomka.startupmatch.ui.сhallenges.ChallengeDetailActivity.EXTRA_CHALLENGE_ID;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +41,7 @@ public class ChallengesFragment extends Fragment {
     private OpenChallengesAdapter openAdapter;
     private FeaturedChallengesAdapter featuredAdapter;
     private MyChallengeSubmissionsAdapter mySubmissionsAdapter;
+    private int selectedFilterChipId = R.id.chip_filter_all;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,8 +61,12 @@ public class ChallengesFragment extends Fragment {
         featuredAdapter = new FeaturedChallengesAdapter(requireContext());
 
         featuredAdapter.submit(repository.getFeaturedChallenges());
-        featuredAdapter.setListener(id ->
-                startActivity(ChallengeDetailActivity.newIntent(requireContext(), id)));
+        featuredAdapter.setListener(id -> {
+            Intent intent = new Intent(requireContext(), ChallengeDetailActivity.class);
+            intent.putExtra("act", "startup");
+            intent.putExtra(EXTRA_CHALLENGE_ID, id);
+            startActivity(intent);
+        });
 
         openAdapter = new OpenChallengesAdapter(requireContext());
         binding.recyclerOpenChallenges.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -79,6 +87,9 @@ public class ChallengesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         loadMySubmissions();
+        if (binding != null && repository != null && openAdapter != null) {
+            filterOpenChallenges(selectedFilterChipId);
+        }
     }
 
     private void loadMySubmissions() {
@@ -101,6 +112,7 @@ public class ChallengesFragment extends Fragment {
     }
 
     private void selectChip(int selectedId) {
+        selectedFilterChipId = selectedId;
         for (int id : CHIP_IDS) {
             TextView chip = binding.getRoot().findViewById(id);
             boolean selected = id == selectedId;

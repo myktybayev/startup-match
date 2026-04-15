@@ -30,7 +30,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:src="@drawable/figma_investor_avatar_1" />
+                android:src="@drawable/figma_investor_profile_avatar" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -48,6 +48,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/investorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"

@@ -2,7 +2,9 @@ package kz.diplomka.startupmatch.ui.сhallenges;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -58,7 +60,15 @@ public class ChallengeAnswerActivity extends AppCompatActivity {
         binding.textSummaryDeadline.setText(shortDeadlineLabel(detail.getDeadlineLine()));
         binding.textSummaryCategories.setText(detail.getCategoriesLine());
         binding.textSummaryInvestorName.setText(detail.getInvestorProfile().name);
-        binding.imageSummaryInvestor.setImageResource(detail.getInvestorProfile().avatarResId);
+        if (!TextUtils.isEmpty(detail.getInvestorPhotoUri())) {
+            try {
+                binding.imageSummaryInvestor.setImageURI(Uri.parse(detail.getInvestorPhotoUri()));
+            } catch (Exception e) {
+                binding.imageSummaryInvestor.setImageResource(detail.getInvestorProfile().avatarResId);
+            }
+        } else {
+            binding.imageSummaryInvestor.setImageResource(detail.getInvestorProfile().avatarResId);
+        }
     }
 
     /**

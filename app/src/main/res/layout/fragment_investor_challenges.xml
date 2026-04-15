@@ -108,7 +108,7 @@
 
                     <ImageView
                         android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:contentDescription="@string/investor_challenges_add_content_description"
                         android:src="@drawable/home_icon_plus"

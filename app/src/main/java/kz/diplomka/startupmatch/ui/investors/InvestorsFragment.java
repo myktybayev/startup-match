@@ -18,11 +18,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import kz.diplomka.startupmatch.R;
 import kz.diplomka.startupmatch.data.local.AppDatabase;
+import kz.diplomka.startupmatch.data.local.entity.AuthUserEntity;
 import kz.diplomka.startupmatch.data.local.entity.ProjectEntity;
+import kz.diplomka.startupmatch.data.local.session.AuthRolePrefs;
 import kz.diplomka.startupmatch.databinding.FragmentInvestorsBinding;
 
 public class InvestorsFragment extends Fragment {
@@ -59,7 +64,7 @@ public class InvestorsFragment extends Fragment {
                     applyCombinedFilter();
                 });
 
-        allInvestors = buildSampleInvestors();
+        refreshAllInvestors();
         setupRecycler();
         setupFilterChips();
         binding.buttonInvestorsSearch.setOnClickListener(v -> {
@@ -71,6 +76,13 @@ public class InvestorsFragment extends Fragment {
                     sheetState);
             sheet.show(getParentFragmentManager(), InvestorFilterBottomSheet.TAG_SHEET);
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshAllInvestors();
+        applyCombinedFilter();
     }
 
     private void setupRecycler() {
@@ -302,6 +314,50 @@ public class InvestorsFragment extends Fragment {
                         45,
                         0)));
         return list;
+    }
+
+    private void refreshAllInvestors() {
+        List<InvestorListItem> merged = buildSampleInvestors();
+        Set<String> existingNames = new HashSet<>();
+        for (InvestorListItem item : merged) {
+            existingNames.add(item.name.trim().toLowerCase(Locale.ROOT));
+        }
+
+        List<AuthUserEntity> registeredInvestors = AppDatabase.get(requireContext())
+                .authUserDao()
+                .listByRole(AuthRolePrefs.ROLE_INVESTOR);
+        for (AuthUserEntity user : registeredInvestors) {
+            String name = user.getFullName() != null ? user.getFullName().trim() : "";
+            if (name.isEmpty()) {
+                continue;
+            }
+            String key = name.toLowerCase(Locale.ROOT);
+            if (existingNames.contains(key)) {
+                continue;
+            }
+            existingNames.add(key);
+            merged.add(0, mapRegisteredInvestor(user));
+        }
+        allInvestors = merged;
+    }
+
+    @NonNull
+    private InvestorListItem mapRegisteredInvestor(@NonNull AuthUserEntity user) {
+        return new InvestorListItem(
+                R.drawable.figma_investor_avatar_1,
+                user.getFullName(),
+                InvestorListItem.BadgeKind.GUEST,
+                "New Investor",
+                new String[]{"General"},
+                new String[]{"Idea", "MVP"},
+                10,
+                50,
+                new String[]{"Kazakhstan"},
+                "$10k – $50k • Kazakhstan",
+                "“Жаңа инвестор StartupMatch платформасына қосылды.”",
+                0,
+                0
+        );
     }
 
     private int dp(int v) {

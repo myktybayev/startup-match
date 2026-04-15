@@ -10,9 +10,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import kz.diplomka.startupmatch.R;
 import kz.diplomka.startupmatch.data.local.AppDatabase;
 import kz.diplomka.startupmatch.data.local.entity.ChallengeSubmissionEntity;
+import kz.diplomka.startupmatch.data.local.entity.InvestorChallengeEntity;
+import kz.diplomka.startupmatch.ui.investor_role.ChallengeTagKeys;
 import kz.diplomka.startupmatch.ui.investors.InvestorListItem;
 import kz.diplomka.startupmatch.ui.сhallenges.model.Challenge;
 import kz.diplomka.startupmatch.ui.сhallenges.model.ChallengeDetail;
@@ -21,8 +26,7 @@ import kz.diplomka.startupmatch.ui.сhallenges.model.FeaturedBadge;
 import kz.diplomka.startupmatch.ui.сhallenges.model.FeaturedChallenge;
 
 /**
- * Тапсырмалар деректері. Қазір мок дерек; кейін инвестор challenge қосқанда
- * {@link kz.diplomka.startupmatch.data.local.AppDatabase} немесе DAO арқылы толтырылады.
+ * Тапсырмалар деректері: инвестор жариялаған тапсырмалар ({@code investor_challenges}) + мок карточкалар.
  */
 public class ChallengesRepository {
 
@@ -53,19 +57,36 @@ public class ChallengesRepository {
         String body = appContext.getString(R.string.challenges_featured_body);
         String deadline = appContext.getString(R.string.challenges_featured_deadline);
         return Arrays.asList(
-                new FeaturedChallenge(101L, FeaturedBadge.ACTIVE, title, body, deadline),
-                new FeaturedChallenge(102L, FeaturedBadge.SUBMITTED, title, body, deadline)
+                new FeaturedChallenge(9101L, FeaturedBadge.ACTIVE, title, body, deadline),
+                new FeaturedChallenge(9102L, FeaturedBadge.SUBMITTED, title, body, deadline)
         );
     }
 
     /**
-     * Барлық ашық тапсырмалар — әр түрден бірден (5 түр).
+     * Инвестор жариялаған тапсырмалар + мок ашық тапсырмалар (мок id: 9001–9005).
      */
     @NonNull
     public List<Challenge> getOpenChallenges() {
+        List<Challenge> out = new ArrayList<>();
+        for (InvestorChallengeEntity e : AppDatabase.get(appContext).investorChallengeDao().listAllOrdered()) {
+            out.add(mapEntityToChallenge(e));
+        }
+        out.addAll(mockOpenChallenges());
+        return out;
+    }
+
+    /**
+     * Дерекқорға инвестор тапсырмасын сақтау.
+     */
+    public long insertInvestorChallenge(@NonNull InvestorChallengeEntity entity) {
+        return AppDatabase.get(appContext).investorChallengeDao().insert(entity);
+    }
+
+    @NonNull
+    private List<Challenge> mockOpenChallenges() {
         return Arrays.asList(
                 new Challenge(
-                        1L,
+                        9001L,
                         ChallengeType.SAAS,
                         appContext.getString(R.string.challenges_open_1_title),
                         appContext.getString(R.string.challenges_open_1_prize),
@@ -76,7 +97,7 @@ public class ChallengesRepository {
                         )
                 ),
                 new Challenge(
-                        2L,
+                        9002L,
                         ChallengeType.AI,
                         appContext.getString(R.string.challenges_open_2_title),
                         appContext.getString(R.string.challenges_open_2_prize),
@@ -87,7 +108,7 @@ public class ChallengesRepository {
                         )
                 ),
                 new Challenge(
-                        3L,
+                        9003L,
                         ChallengeType.MOBILE,
                         appContext.getString(R.string.challenges_open_3_title),
                         appContext.getString(R.string.challenges_open_3_prize),
@@ -95,7 +116,7 @@ public class ChallengesRepository {
                         Arrays.asList(appContext.getString(R.string.challenges_tag_mobile))
                 ),
                 new Challenge(
-                        4L,
+                        9004L,
                         ChallengeType.FINTECH,
                         appContext.getString(R.string.challenges_open_fintech_title),
                         appContext.getString(R.string.challenges_open_fintech_prize),
@@ -103,7 +124,7 @@ public class ChallengesRepository {
                         Arrays.asList(appContext.getString(R.string.challenges_tag_fintech))
                 ),
                 new Challenge(
-                        5L,
+                        9005L,
                         ChallengeType.WEB,
                         appContext.getString(R.string.challenges_open_web_title),
                         appContext.getString(R.string.challenges_open_web_prize),
@@ -157,6 +178,11 @@ public class ChallengesRepository {
      */
     @NonNull
     public ChallengeDetail getChallengeDetail(long id) {
+        InvestorChallengeEntity published =
+                AppDatabase.get(appContext).investorChallengeDao().getById(id);
+        if (published != null) {
+            return buildInvestorChallengeDetail(published);
+        }
         Challenge open = findOpenById(id);
         if (open != null) {
             return buildOpenDetail(open);
@@ -188,7 +214,8 @@ public class ChallengesRepository {
                 bodyForType(open.getType()),
                 requirementsForOpenChallenge(open),
                 outcomeTitleForOpen(open.getType()),
-                outcomeBodyForOpen(open.getType())
+                outcomeBodyForOpen(open.getType()),
+                null
         );
     }
 
@@ -213,8 +240,147 @@ public class ChallengesRepository {
                 featured.getDescription(),
                 requirementsForFeaturedId(featured.getId()),
                 outcomeTitleForFeaturedId(featured.getId()),
-                outcomeBodyForFeaturedId(featured.getId())
+                outcomeBodyForFeaturedId(featured.getId()),
+                null
         );
+    }
+
+    @NonNull
+    private ChallengeDetail buildInvestorChallengeDetail(@NonNull InvestorChallengeEntity e) {
+        List<String> displayTags = tagsFromTagKeysCsv(e.getTagKeysCsv());
+        String categories = TextUtils.join(", ", displayTags.toArray(new String[0]));
+        String deadlineLine = appContext.getString(
+                R.string.challenge_detail_deadline_line, e.getDeadlineLabel());
+        String description = e.getDescription();
+        if (!TextUtils.isEmpty(e.getTeamFit())) {
+            description = description
+                    + "\n\n"
+                    + appContext.getString(R.string.add_new_challenge_label_fit)
+                    + ": "
+                    + e.getTeamFit();
+        }
+        InvestorListItem investor = investorFromEntity(e);
+        List<String> requirements = parseRequirementsJson(e.getRequirementsJson());
+        String outcomeTitle;
+        String outcomeBody;
+        if (InvestorChallengeEntity.REWARD_PILOT.equals(e.getRewardType())) {
+            outcomeTitle = appContext.getString(R.string.add_new_challenge_reward_pilot_title).replace('\n', ' ');
+            outcomeBody = appContext.getString(R.string.add_new_challenge_reward_pilot_body).replace('\n', ' ');
+        } else {
+            outcomeTitle = appContext.getString(R.string.add_new_challenge_reward_invest_title);
+            outcomeBody = appContext.getString(R.string.add_new_challenge_reward_invest_body).replace('\n', ' ');
+        }
+        return new ChallengeDetail(
+                e.getId(),
+                e.getStageBadge(),
+                appContext.getString(R.string.challenge_detail_active_badge),
+                e.getTitle(),
+                deadlineLine,
+                categories,
+                investor,
+                description,
+                requirements,
+                outcomeTitle,
+                outcomeBody,
+                e.getInvestorPhotoUri()
+        );
+    }
+
+    @NonNull
+    private Challenge mapEntityToChallenge(@NonNull InvestorChallengeEntity e) {
+        ChallengeType type;
+        try {
+            type = ChallengeType.valueOf(e.getFilterType());
+        } catch (Exception ex) {
+            type = ChallengeType.SAAS;
+        }
+        return new Challenge(
+                e.getId(),
+                type,
+                e.getTitle(),
+                prizeLabelForRewardType(e.getRewardType()),
+                e.getDeadlineLabel(),
+                tagsFromTagKeysCsv(e.getTagKeysCsv())
+        );
+    }
+
+    @NonNull
+    private String prizeLabelForRewardType(@NonNull String rewardType) {
+        if (InvestorChallengeEntity.REWARD_PILOT.equals(rewardType)) {
+            return appContext.getString(R.string.published_challenge_prize_pilot);
+        }
+        return appContext.getString(R.string.published_challenge_prize_invest);
+    }
+
+    @NonNull
+    private InvestorListItem investorFromEntity(@NonNull InvestorChallengeEntity e) {
+        List<String> industries = tagsFromTagKeysCsv(e.getTagKeysCsv());
+        String[] ind = industries.isEmpty() ? new String[]{"—"} : industries.toArray(new String[0]);
+        return new InvestorListItem(
+                R.drawable.figma_add_challenge_investor_avatar,
+                e.getInvestorName(),
+                InvestorListItem.BadgeKind.VERIFIED,
+                e.getInvestorRole(),
+                ind,
+                new String[]{"MVP"},
+                10,
+                100,
+                new String[]{"Global"},
+                "—",
+                "—",
+                0,
+                0
+        );
+    }
+
+    @NonNull
+    private List<String> tagsFromTagKeysCsv(@Nullable String csv) {
+        List<String> labels = new ArrayList<>();
+        if (TextUtils.isEmpty(csv)) {
+            return labels;
+        }
+        String[] parts = csv.split(",");
+        for (String p : parts) {
+            String k = p.trim();
+            if (!k.isEmpty()) {
+                labels.add(tagKeyToDisplayLabel(k));
+            }
+        }
+        return labels;
+    }
+
+    @NonNull
+    private String tagKeyToDisplayLabel(@NonNull String key) {
+        switch (key) {
+            case ChallengeTagKeys.FINTECH:
+                return appContext.getString(R.string.add_new_challenge_tag_fintech);
+            case ChallengeTagKeys.WEB:
+                return appContext.getString(R.string.add_new_challenge_tag_web);
+            case ChallengeTagKeys.API:
+                return appContext.getString(R.string.add_new_challenge_tag_api);
+            case ChallengeTagKeys.B2B:
+                return appContext.getString(R.string.add_new_challenge_tag_b2b);
+            case ChallengeTagKeys.PAYMENTS:
+                return appContext.getString(R.string.add_new_challenge_tag_payments);
+            default:
+                return key;
+        }
+    }
+
+    @NonNull
+    private List<String> parseRequirementsJson(@Nullable String json) {
+        List<String> out = new ArrayList<>();
+        if (TextUtils.isEmpty(json)) {
+            return out;
+        }
+        try {
+            JSONArray a = new JSONArray(json);
+            for (int i = 0; i < a.length(); i++) {
+                out.add(a.getString(i));
+            }
+        } catch (JSONException ignored) {
+        }
+        return out;
     }
 
     /**
@@ -223,19 +389,19 @@ public class ChallengesRepository {
      */
     @NonNull
     private InvestorListItem investorProfileForOpenChallengeId(long challengeId) {
-        if (challengeId == 1L) {
+        if (challengeId == 9001L) {
             return investorAyjanaSerik();
         }
-        if (challengeId == 2L) {
+        if (challengeId == 9002L) {
             return investorArunaCapital();
         }
-        if (challengeId == 3L) {
+        if (challengeId == 9003L) {
             return investorBekHorizon();
         }
-        if (challengeId == 4L) {
+        if (challengeId == 9004L) {
             return investorAskharEsen();
         }
-        if (challengeId == 5L) {
+        if (challengeId == 9005L) {
             return investorLunaVentures();
         }
         return investorAyjanaSerik();
@@ -243,10 +409,10 @@ public class ChallengesRepository {
 
     @NonNull
     private InvestorListItem investorProfileForFeaturedId(long featuredId) {
-        if (featuredId == 101L) {
+        if (featuredId == 9101L) {
             return investorMeruertSadyk();
         }
-        if (featuredId == 102L) {
+        if (featuredId == 9102L) {
             return investorDanaVentures();
         }
         return investorMeruertSadyk();
@@ -458,26 +624,26 @@ public class ChallengesRepository {
 
     @NonNull
     private List<String> requirementsForFeaturedId(long featuredId) {
-        if (featuredId == 101L) {
+        if (featuredId == 9101L) {
             return Arrays.asList(
                     appContext.getString(R.string.challenge_detail_req_featured_active_1),
                     appContext.getString(R.string.challenge_detail_req_featured_active_2),
                     appContext.getString(R.string.challenge_detail_req_featured_active_3),
                     appContext.getString(R.string.challenge_detail_req_featured_active_4));
         }
-        if (featuredId == 102L) {
+        if (featuredId == 9102L) {
             return Arrays.asList(
                     appContext.getString(R.string.challenge_detail_req_featured_submitted_1),
                     appContext.getString(R.string.challenge_detail_req_featured_submitted_2),
                     appContext.getString(R.string.challenge_detail_req_featured_submitted_3),
                     appContext.getString(R.string.challenge_detail_req_featured_submitted_4));
         }
-        return requirementsForFeaturedId(101L);
+        return requirementsForFeaturedId(9101L);
     }
 
     @NonNull
     private String outcomeTitleForFeaturedId(long featuredId) {
-        if (featuredId == 102L) {
+        if (featuredId == 9102L) {
             return appContext.getString(R.string.challenge_detail_outcome_title_featured_submitted);
         }
         return appContext.getString(R.string.challenge_detail_outcome_title_featured_active);
@@ -485,7 +651,7 @@ public class ChallengesRepository {
 
     @NonNull
     private String outcomeBodyForFeaturedId(long featuredId) {
-        if (featuredId == 102L) {
+        if (featuredId == 9102L) {
             return appContext.getString(R.string.challenge_detail_outcome_body_featured_submitted);
         }
         return appContext.getString(R.string.challenge_detail_outcome_body_featured_active);
